@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Yura-Si4kar/planner_mvc#readme",
   "dependencies": {
+    "@vercel/node": "^3.0.7",
     "json-server": "^0.16.3"
   }
 }
