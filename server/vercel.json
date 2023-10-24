@@ -1,18 +1,9 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "./index.js",
-      "use": "@vercel/node"
-    }
+    { "src": "server.js", "use": "@vercel/node" }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ],
-  "env": {
-    "SCRIPTS_START": "json-server --watch db.json --port $PORT"
-  }
+    { "src": "/api/data", "dest": "server.js" }
+  ]
 }
