@@ -1,4 +1,4 @@
-export const menuApi = 'https://server-z8t0.onrender.com/';
+export const menuApi = 'https://tiny-blue-vulture-shoe.cyclic.app/';
 export const STORAGE_KEY = 'orders';
 
 export const initialValue = {
