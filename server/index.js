@@ -1,16 +1,35 @@
 const express = require('express');
-const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 
-app.use(cors({ origin: '*' }));
+app.use(bodyParser.json());
 
-app.get('/user', (req, res) => {
-    if (req.method === 'GET') {
-        res.json({ name: 'Yura', surname: 'Sichkar' });
-    } else {
-        res.json({ message: 'Проблем!!!' });
-    }
-})
+// Обробник GET запитів
+app.get('/api/data', (req, res) => {
+    // Логіка для обробки GET запиту
+    res.json({ message: 'GET request successful' });
+});
 
-app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
+// Обробник POST запитів
+app.post('/api/data', (req, res) => {
+    // Логіка для обробки POST запиту
+    res.json({ message: 'POST request successful', data: req.body });
+});
+
+// Обробник PUT запитів
+app.put('/api/data', (req, res) => {
+    // Логіка для обробки PUT запиту
+    res.json({ message: 'PUT request successful', data: req.body });
+});
+
+// Обробник DELETE запитів
+app.delete('/api/data', (req, res) => {
+    // Логіка для обробки DELETE запиту
+    res.json({ message: 'DELETE request successful' });
+});
+
+// Прослуховування порту
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
