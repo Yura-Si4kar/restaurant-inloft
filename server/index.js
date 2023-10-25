@@ -1,10 +1,16 @@
-const jsonServer = require("json-server");
-const server = jsonServer.create();
-const router = jsonServer.router("db.json"); 
-const middlewares = jsonServer.defaults();
-const port = process.env.PORT || 3001;
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const PORT = 3000;
 
-server.use(middlewares);
-server.use(router);
+app.use(cors({ origin: '*' }));
 
-server.listen(port, () => console.log(`server is listeneing on port ${port}`));
+app.get('/user', (req, res) => {
+    if (req.method === 'GET') {
+        res.json({ name: 'Yura', surname: 'Sichkar' });
+    } else {
+        res.json({ message: 'Проблем!!!' });
+    }
+})
+
+app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
