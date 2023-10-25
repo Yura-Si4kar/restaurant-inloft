@@ -1,4 +1,4 @@
-export const menuApi = 'https://tiny-blue-vulture-shoe.cyclic.app/';
+export const menuApi = 'https://restaurant-inloft-server.vercel.app/api/';
 export const STORAGE_KEY = 'orders';
 
 export const initialValue = {

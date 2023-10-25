@@ -63,7 +63,7 @@ router.use('/:item', (req, res, next) => {
             const steaksMenuRouter = new MenuRouter(controllers.steaks);
             router.use('/steaks', steaksMenuRouter.getRouter());
             break;
-        case 'steaks':
+        case 'foods':
             const foodsMenuRouter = new MenuRouter(controllers.foods);
             router.use('/foods', foodsMenuRouter.getRouter());
             break;
