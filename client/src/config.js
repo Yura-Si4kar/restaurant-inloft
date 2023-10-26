@@ -1,4 +1,4 @@
-export const menuApi = 'http://localhost:3001/api/';
+export const menuApi = 'https://restaurant-inloft-server.vercel.app/api/';
 export const STORAGE_KEY = 'orders';
 
 export const initialValue = {

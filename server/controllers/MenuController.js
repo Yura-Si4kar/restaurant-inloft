@@ -18,7 +18,7 @@ class MenuController {
     }
 
     async changeOne(req, res) {
-        const itemId = req.params.id;
+        const itemId = Nember(req.params.id);
         const newData = req.body;
 
         try {
