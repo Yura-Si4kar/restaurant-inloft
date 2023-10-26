@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Container, Grid, ListItem, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
-const pages = ['bbqs', 'best', 'breads', 'burgers', 'chocolates', 'desserts', 'drinks', 'fried-chicken', 'ice-cream', 'pizzas', 'porks', 'sandwiches', 'sausages', 'steaks'];
+const pages = ['bbqs', 'best', 'breads', 'burgers', 'chocolates', 'desserts', 'drinks', 'fried_chicken', 'ice_cream', 'pizzas', 'porks', 'sandwiches', 'sausages', 'steaks'];
 
 const useStyles = makeStyles((theme) => ({
   listItemLink: {
