@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const MenuController = require('./MenuController');
+const MenuItemsController = require('./MenuItemsController');
 
 const bbqsMenuFilePath = path.join(__dirname, '..', 'api', 'bbqs.json');
 const bestMenuFilePath = path.join(__dirname, '..', 'api', 'best.json');
@@ -36,9 +37,9 @@ const sandwichesMenuController = new MenuController(sandwichesMenuFilePath, 'san
 const sausagesMenuController = new MenuController(sausagesMenuFilePath, 'sausages');
 const steaksMenuController = new MenuController(steaksMenuFilePath, 'steaks');
 const foodsMenuController = new MenuController(foodsMenuFilePath, 'foods');
-const tablesController = new MenuController(tablesFilePath, 'tables');
-const personnelController = new MenuController(personnelFilePath, 'personnel');
-const salesController = new MenuController(salesFilePath, 'sales');
+const tablesController = new MenuItemsController(tablesFilePath, 'tables');
+const personnelController = new MenuItemsController(personnelFilePath, 'personnel');
+const salesController = new MenuItemsController(salesFilePath, 'sales');
 
 module.exports = {
     bbqs: bbqsMenuController,
@@ -48,7 +49,7 @@ module.exports = {
     chocolates: chocolatesMenuController,
     desserts: dessertsMenuController,
     drinks: drinksMenuController,
-    fried_hicken: friedChickenMenuController,
+    fried_chicken: friedChickenMenuController,
     ice_cream: iceCreamMenuController,
     pizzas: pizzasMenuController,
     porks: porksMenuController,
