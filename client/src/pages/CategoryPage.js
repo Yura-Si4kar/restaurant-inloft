@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectMenuList } from '../store/selectors/selectors';
@@ -13,27 +13,31 @@ export default function CategoryPage() {
   const list = useSelector(selectMenuList);
 
   useEffect(() => {
-    dispatch(getMenuList(params.item))
-  }, [dispatch, params.item])   
+    dispatch(getMenuList(params.item));
+  }, [dispatch, params.item]);
 
   return (
     <>
-      <Container maxWidth='xl'>
+      <Container maxWidth="xl">
         <Box>
           <Typography
-            variant='h1'
+            variant="h1"
             style={{
               fontWeight: 700,
               fontSize: '25px',
-              textAlign: 'center'
+              textAlign: 'center',
             }}
-          >{params.item.toLocaleUpperCase()}</Typography>
+          >
+            {params.item.toLocaleUpperCase()}
+          </Typography>
         </Box>
-        <div className='dishes-list'>
-          {list.map((item) => <MenuListItem key={item._id} item={item} />)}
+        <div className="dishes-list">
+          {list.map((item) => (
+            <MenuListItem key={item._id} item={item} />
+          ))}
         </div>
-        <OrderPopupBtn/>
+        <OrderPopupBtn />
       </Container>
     </>
-  )
+  );
 }

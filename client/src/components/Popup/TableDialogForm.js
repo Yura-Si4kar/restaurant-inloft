@@ -13,7 +13,7 @@ const INITIAL_VALUE = {
   name: '',
   img: '',
   error: false,
-}
+};
 
 export default function TableDialogForm({ open, handleClose }) {
   const dispatch = useDispatch();
@@ -25,29 +25,28 @@ export default function TableDialogForm({ open, handleClose }) {
       [e.target.name]: e.target.value,
       img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fdesign-homes.ru%2Fkomnaty%2Fkukhnya-i-stolovaya%2Fservirovka-stola&psig=AOvVaw1DeIH0KCyJOfppjCfO7wo2&ust=1681477956988000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJjyz9b3pv4CFQAAAAAdAAAAABAI',
       order: [],
-    })
-  }
+    });
+  };
 
   const onSubmitForm = (e) => {
     e.preventDefault();
 
-    if(validateFilds(formState.name)
-    ) {
+    if (validateFilds(formState.name)) {
       return setFormState({
-        ...formState, 
+        ...formState,
         name: '',
         img: '',
         error: true,
-      })
+      });
     }
     delete formState.error;
     dispatch(addItem(formState));
     setFormState(INITIAL_VALUE);
     handleClose();
-  }
+  };
 
   function validateFilds(input) {
-    return input ==='';
+    return input === '';
   }
 
   return (
@@ -57,9 +56,16 @@ export default function TableDialogForm({ open, handleClose }) {
         <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Назва столику: </Form.Label>
-            <Form.Control type='text' name='name' placeholder="Ім'я" onChange={getInput}/>  
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Ім'я"
+              onChange={getInput}
+            />
           </Form.Group>
-          <Typography paragraph className={formState.error ? 'error' : 'hide'}>Wrong! Fill in all fields!</Typography>
+          <Typography paragraph className={formState.error ? 'error' : 'hide'}>
+            Wrong! Fill in all fields!
+          </Typography>
         </Form>
       </DialogContent>
       <DialogActions>

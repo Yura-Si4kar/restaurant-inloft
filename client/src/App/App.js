@@ -6,17 +6,17 @@ import NavigationBar from '../components/NavigationBar';
 import { selectIsAuth } from '../store/selectors/selectors';
 import { getTableList } from '../store/actions/tablesActions';
 import { Grid, ThemeProvider, createTheme } from '@mui/material';
+import { TABLES_LIST_PARAM } from '../config/consts';
 
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
 export default function App() {
-  const TABLES_LIST_PARAM = 'tables';
   const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTableList(TABLES_LIST_PARAM))
-  }, [dispatch])
+    dispatch(getTableList(TABLES_LIST_PARAM));
+  }, [dispatch]);
 
   return (
     <Grid container spacing={12}>
@@ -25,11 +25,11 @@ export default function App() {
           <ThemeProvider theme={theme}>
             <BrowserRouter>
               {isAuth && <NavigationBar />}
-              <AppRouter/>
+              <AppRouter />
             </BrowserRouter>
           </ThemeProvider>
         </Grid>
       ))}
     </Grid>
-  )
+  );
 }

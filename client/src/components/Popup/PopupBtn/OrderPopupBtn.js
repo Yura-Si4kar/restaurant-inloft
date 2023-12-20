@@ -10,30 +10,33 @@ export default function OrderPopupBtn() {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => () => {
-      setOpen(true);
+    setOpen(true);
   };
 
   const handleClose = () => {
-      setOpen(false);
+    setOpen(false);
   };
 
   return (
     <>
-      {ordersList.length > 0 &&
+      {ordersList.length > 0 && (
         <Button
-            onClick={handleClickOpen('paper')}
-            variant='contained'
-            style={{ position: 'fixed', bottom: 23, width: 280, right: 28, fontSize: 18 }}
+          onClick={handleClickOpen('paper')}
+          variant="contained"
+          style={{
+            position: 'fixed',
+            bottom: 23,
+            width: 280,
+            right: 28,
+            fontSize: 18,
+          }}
         >
-        Замовлення ({ordersList.length})
+          Замовлення ({ordersList.length})
         </Button>
-      }
-      {ordersList.length === 0 ||
-        <DialogWindow
-        open={open}
-        handleClose={handleClose}
-      />
-      }
+      )}
+      {ordersList.length === 0 || (
+        <DialogWindow open={open} handleClose={handleClose} />
+      )}
     </>
-  )
+  );
 }

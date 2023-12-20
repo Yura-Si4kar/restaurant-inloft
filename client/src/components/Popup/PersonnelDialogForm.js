@@ -14,7 +14,7 @@ const INITIAL_VALUE = {
   position: '',
   salary: '',
   error: false,
-}
+};
 
 export default function PersonnelDialogForm({ open, handleClose }) {
   const dispatch = useDispatch();
@@ -24,32 +24,33 @@ export default function PersonnelDialogForm({ open, handleClose }) {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   const onSubmitForm = (e) => {
     e.preventDefault();
 
-    if(validateFilds(formState.name) ||
+    if (
+      validateFilds(formState.name) ||
       validateFilds(formState.position) ||
       validateFilds(formState.salary)
     ) {
       return setFormState({
-        ...formState, 
+        ...formState,
         name: '',
         position: '',
         salary: '',
         error: true,
-      })
+      });
     }
     delete formState.error;
     dispatch(addUser(formState));
     setFormState(INITIAL_VALUE);
     handleClose();
-  }
+  };
 
   function validateFilds(input) {
-    return input ==='';
+    return input === '';
   }
 
   return (
@@ -59,17 +60,34 @@ export default function PersonnelDialogForm({ open, handleClose }) {
         <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Введіть ім'я працівника: </Form.Label>
-            <Form.Control type='text' name='name' placeholder="Ім'я" onChange={getInput}/>  
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Ім'я"
+              onChange={getInput}
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
             <Form.Label>Посада працівника: </Form.Label>
-            <Form.Control type='text' name='position' placeholder="нвзва посади"onChange={getInput}/>  
+            <Form.Control
+              type="text"
+              name="position"
+              placeholder="нвзва посади"
+              onChange={getInput}
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
             <Form.Label>Оплата: </Form.Label>
-            <Form.Control type='text' name='salary' placeholder="відсоток від продажу"onChange={getInput}/>  
+            <Form.Control
+              type="text"
+              name="salary"
+              placeholder="відсоток від продажу"
+              onChange={getInput}
+            />
           </Form.Group>
-          <Typography paragraph className={formState.error ? 'error' : 'hide'}>Wrong! Fill in all fields!</Typography>
+          <Typography paragraph className={formState.error ? 'error' : 'hide'}>
+            Wrong! Fill in all fields!
+          </Typography>
         </Form>
       </DialogContent>
       <DialogActions>

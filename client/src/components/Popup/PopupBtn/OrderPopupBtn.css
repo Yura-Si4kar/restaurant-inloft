@@ -1,4 +1,6 @@
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}
 
 /* Кнопка, используемая для открытия формы чата - закреплена в нижней части страницы */
 .open-button {
@@ -50,13 +52,13 @@
 
 /* Установите стиль для кнопки отправить/кнопка */
 .form-container .btn {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 16px 20px;
   border: none;
   cursor: pointer;
   width: 100%;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   opacity: 0.8;
 }
 
@@ -66,6 +68,7 @@
 }
 
 /* Добавьте некоторые эффекты наведения на кнопки */
-.form-container .btn:hover, .open-button:hover {
+.form-container .btn:hover,
+.open-button:hover {
   opacity: 1;
 }

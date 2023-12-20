@@ -1,40 +1,28 @@
-import React, { useState } from 'react'
-import { styled } from '@mui/material/styles';
-import { Badge, Box, Button, ButtonGroup, Card, CardActions, CardContent, CardHeader, CardMedia, Collapse, IconButton, Rating, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import React, { useState } from 'react';
+import {
+  Badge,
+  Box,
+  Button,
+  ButtonGroup,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Collapse,
+  Rating,
+  Typography,
+} from '@mui/material';
 import { useDispatch } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { addMenuItems, changeItemRating } from '../store/actions/servicesActions';
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    [theme.breakpoints.up('xs')]: {
-      width: '100%',
-    },
-    [theme.breakpoints.up('sm')]: {
-      width: '50%',
-    },
-    [theme.breakpoints.up('md')]: {
-      width: '33.33%',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: '25%',
-    },
-  },
-}));
+import {
+  addMenuItems,
+  changeItemRating,
+} from '../store/actions/servicesActions';
+import ExpandMore from '../utils/expandModeStyle';
+import useStyles from '../hooks/useStyles';
 
 export default function MenuListItem({ item }) {
   const dispatch = useDispatch();
@@ -45,22 +33,22 @@ export default function MenuListItem({ item }) {
   const changeRating = (newValue) => {
     setRating(newValue);
     dispatch(changeItemRating(item.type, item._id, newValue));
-  }
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const handleAddClick = () => {
-    dispatch(addMenuItems({ ...item, numbers: count }))
-  }
+    dispatch(addMenuItems({ ...item, numbers: count }));
+  };
 
   const classes = useStyles();
 
   return (
     <>
       <div className={`dishes-list-box ${classes.root}`}>
-        <Card className='dishes-list-item' sx={{ width: '100%' }}>
+        <Card className="dishes-list-item" sx={{ width: '100%' }}>
           <CardHeader></CardHeader>
           <CardMedia
             component="img"
@@ -74,10 +62,10 @@ export default function MenuListItem({ item }) {
             </Typography>
           </CardContent>
           <CardActions>
-            <Typography variant='p' color='yellowgreen'>
+            <Typography variant="p" color="yellowgreen">
               Ціна: {item.price} $
             </Typography>
-            <Typography variant='span'>
+            <Typography variant="span">
               <Rating
                 name="simple-controlled"
                 value={rating}
@@ -97,20 +85,20 @@ export default function MenuListItem({ item }) {
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              {item.dsc && 
-                <Typography paragraph>
-                  Опис: {item.dsc}
-                </Typography>
-              }              
+              {item.dsc && <Typography paragraph>Опис: {item.dsc}</Typography>}
               <Box>
-                <Box style={{marginBottom: 20}}>
-                  <Typography variant='span'>Кількість:</Typography>
-                  <Badge style={{left: 20}} color="secondary" badgeContent={count}></Badge>
+                <Box style={{ marginBottom: 20 }}>
+                  <Typography variant="span">Кількість:</Typography>
+                  <Badge
+                    style={{ left: 20 }}
+                    color="secondary"
+                    badgeContent={count}
+                  ></Badge>
                 </Box>
                 <Box
                   style={{
                     display: 'flex',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
                   }}
                 >
                   <ButtonGroup>
@@ -131,7 +119,9 @@ export default function MenuListItem({ item }) {
                       <AddIcon fontSize="small" />
                     </Button>
                   </ButtonGroup>
-                  <Button variant='contained' onClick={handleAddClick}>Add</Button>
+                  <Button variant="contained" onClick={handleAddClick}>
+                    Add
+                  </Button>
                 </Box>
               </Box>
             </CardContent>
