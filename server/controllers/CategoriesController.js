@@ -1,25 +1,11 @@
 const Models = require('../models/model');
 const ApiError = require('../error/ApiError');
 
-class MenuItemsController {
+class CategoriesController {
     constructor(category) {
         this.Model = Models[category];
     }
     
-    async create(req, res) {
-        const bbqs = new this.Model(req.body);
-        bbqs
-            .save()
-            .then((result) => {
-                res
-                    .status(201)
-                    .json(result);
-            })
-            .catch((e) => {
-                next(ApiError.internal(e.message))
-            })  
-    }
-
     async getAll(req, res, next) {
         this.Model
             .find() // повертає вказівник на повернену колекцію документів - cursor(інкапсулюють в собі набори отриманих з БД об'єктів)
@@ -33,8 +19,8 @@ class MenuItemsController {
                 next(ApiError.internal(e.message))
             })
     }
-
-    async getOne(req, res) {
+    
+    async getOne(req, res, next) {
         this.Model
             .findById(req.params.id)
             .then((doc) => {
@@ -47,7 +33,7 @@ class MenuItemsController {
             })
     }
 
-    async updateOne(req, res) {
+    async updateOne(req, res, next) {
         this.Model
             .findByIdAndUpdate(req.params.id, req.body)
             .then((result) => {
@@ -59,19 +45,6 @@ class MenuItemsController {
                 next(ApiError.internal)
             })     
     }
-
-    async delete(req, res) {
-        this.Model
-            .findByIdAndDelete(req.params.id)
-            .then((result) => {
-                res
-                    .status(200)
-                    .json(result);
-            })
-            .catch((e) => {
-                next(ApiError.internal(e.message))
-            }) 
-    }
 }
 
-module.exports = MenuItemsController;
+module.exports = CategoriesController;

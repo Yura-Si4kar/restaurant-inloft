@@ -1,15 +1,27 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const router = require('./routers');
+const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
+const connectToDb = require('./db');
 const cors = require('cors');
-const router = require('./router');
-const app = express();
-const port = process.env.PORT || 3001;
 
+const PORT = 3001;
+
+const app = express();
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-app.use('/api', router);
+app.use('/', router);
 
-// Прослуховування порту
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+app.use(errorHandler);
+    
+const start = async () => {
+    try {
+        await connectToDb();
+        app.listen(PORT, (err) => err ? console.log(err) : console.log(`Server listening on port ${PORT}`));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+start();
