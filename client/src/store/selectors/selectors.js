@@ -1,5 +1,9 @@
-export function selectLoading(state) {
-    return state.isLoading;
+export function selectIsAuth(state) {
+    return state.isAuth;
+}
+
+export function selectUser(state) {
+    return state.user;
 }
 
 export function selectMenuList(state) {
@@ -14,14 +18,10 @@ export function selectTablesList(state) {
     return state.tables;
 }
 
-export function selectPersonnelList(state) {
-    return state.personnel;
+export function selectPersonnelsList(state) {
+    return state.personnels;
 }
 
 export function selectStatisticsList(state) {
     return state.sales;
-}
-
-export function selectError(state) {
-    return state.error;
 }

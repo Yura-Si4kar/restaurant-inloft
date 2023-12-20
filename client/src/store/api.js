@@ -1,4 +1,4 @@
-import { menuApi } from "../config";
+import { menuApi } from "../config/config";
 
 export function getFetchListByCategories(params) {
     return fetch(menuApi + params).then((res) => res.json());
@@ -14,18 +14,18 @@ export function setNewRatingToTheMenuItem(params, id, newItem) {
     }).then((res) => res.json())
 }
 
-export function setOrdersListToTable(id, order) {
+export function setOrdersListToTable(id, table) {
     return fetch(menuApi + 'tables/' + id, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(order),
+        body: JSON.stringify(table),
     }).then((res) => res.json())
 }
 
 export function addEmploeeToTheDataList(user) {
-    return fetch(menuApi + 'personnel', {
+    return fetch(menuApi + 'personnels', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export function addEmploeeToTheDataList(user) {
 }
 
 export function removeEmploeeFromTheDataList(id) {
-    return fetch(menuApi + 'personnel/' + id, {
+    return fetch(menuApi + 'personnels/' + id, {
         method: 'DELETE',
     })
 }
