@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import {
   overwriteOrderItem,
   removeOrderElement,
-} from '../store/actions/servicesActions';
+} from '../../store/actions/servicesActions';
 
 export default function OrderListItem({ item }) {
   const dispatch = useDispatch();

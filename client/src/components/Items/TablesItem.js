@@ -16,15 +16,15 @@ import {
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
-import CheckWithdrawalWindow from './Popup/CheckWithdrawalWindow';
-import pic from '../img/table.jpg';
-import { selectPersonnelsList } from '../store/selectors/selectors';
+import CheckWithdrawalWindow from '../Popup/CheckWithdrawalWindow';
+import pic from '../../img/table.jpg';
+import { selectPersonnelsList } from '../../store/selectors/selectors';
 import {
   clearTableOrders,
   saveSalesDate,
-} from '../store/actions/servicesActions';
-import { deleteTable } from '../store/actions/tablesActions';
-import ExpandMore from '../utils/expandModeStyle';
+} from '../../store/actions/servicesActions';
+import { deleteTable } from '../../store/actions/tablesActions';
+import { ExpandMore } from '../../utils/customStyledElement';
 
 export default function TablesItem({ table }) {
   const [expanded, setExpanded] = useState(false);

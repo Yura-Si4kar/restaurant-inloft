@@ -6,8 +6,7 @@ import { createUser, signInUser } from '../firebase/firebase';
 import { startSession } from '../firebase/session';
 import MyInput from '../components/UI/MyInput/MyInput';
 import MyButton from '../components/UI/MyButton/MyButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectIsAuth } from '../store/selectors/selectors';
+import { useDispatch } from 'react-redux';
 import { setIsAuth, setUser } from '../store/actions/servicesActions';
 
 export default function Auth() {
@@ -15,13 +14,11 @@ export default function Auth() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = location.pathname === LOGIN_ROUTE;
-  const isAuth = useSelector(selectIsAuth);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [error, setError] = useState('');
 
-  console.log(isAuth);
   const submit = async () => {
     if (isLogin) {
       try {

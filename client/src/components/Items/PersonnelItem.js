@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
-import pic from '../img/unlogin-user-avatars.jpg';
+import pic from '../../img/unlogin-user-avatars.jpg';
 import {
   Box,
   Button,
@@ -14,7 +14,7 @@ import {
 import { ExpandMore } from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useDispatch } from 'react-redux';
-import { fireAnEmployee } from '../store/actions/personnelsActions';
+import { fireAnEmployee } from '../../store/actions/personnelsActions';
 
 export default function PersonnelItem({ person }) {
   const dispatch = useDispatch();

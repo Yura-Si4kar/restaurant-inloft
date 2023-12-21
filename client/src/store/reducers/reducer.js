@@ -17,6 +17,7 @@ import {
   SET_MENU_LIST,
   SET_ORDER_LIST,
   SET_SALES_LIST,
+  SET_SEARCH_VALUE,
   SET_USER,
   TIE_THE_ORDER_TO_THE_TABLE,
 } from '../actions/servicesActions';
@@ -68,6 +69,8 @@ export default function reducer(state = initialValue, { type, payload }) {
       return removeTable(state, payload);
     case DELETE_EMPLOYEE:
       return removeWorker(state, payload);
+    case SET_SEARCH_VALUE:
+      return {...state, search: payload};
 
     default:
       return state;

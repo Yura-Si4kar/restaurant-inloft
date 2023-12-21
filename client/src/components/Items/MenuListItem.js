@@ -20,9 +20,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
   addMenuItems,
   changeItemRating,
-} from '../store/actions/servicesActions';
-import ExpandMore from '../utils/expandModeStyle';
-import useStyles from '../hooks/useStyles';
+} from '../../store/actions/servicesActions';
+import useStyles from '../../hooks/useStyles';
+import { ExpandMore } from '../../utils/customStyledElement';
 
 export default function MenuListItem({ item }) {
   const dispatch = useDispatch();

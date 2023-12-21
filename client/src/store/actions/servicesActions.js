@@ -58,6 +58,9 @@ export const clearOrderListFromTheTable = createAction(
 export const CALCULATE_THE_CLIENT = 'CALCULATE_THE_CLIENT';
 export const calculateTheExtractor = createAction(CALCULATE_THE_CLIENT);
 
+export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE';
+export const setSearchValue = createAction(SET_SEARCH_VALUE);
+
 export const getMenuList = (params) => (dispatch, getState) => {
   dispatch(setLoading(true));
   getFetchListByCategories(params)

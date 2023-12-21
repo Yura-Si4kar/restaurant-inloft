@@ -1,30 +1,18 @@
-import { Button, Container, Grid, useMediaQuery } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { Container, Grid } from '@mui/material';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectPersonnelsList } from '../store/selectors/selectors';
-import PersonnelDialogForm from '../components/Popup/PersonnelDialogForm';
-import PersonnelItem from '../components/PersonnelItem';
+import PersonnelItem from '../components/Items/PersonnelItem';
 import { getPersonnelsList } from '../store/actions/personnelsActions';
 import { PERSONNELS_LIST_PARAM } from '../config/consts';
 
 export default function PersonnelsPage() {
-  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const personnel = useSelector(selectPersonnelsList);
-
-  const smallScreen = useMediaQuery('(max-width: 600px');
 
   useEffect(() => {
     dispatch(getPersonnelsList(PERSONNELS_LIST_PARAM));
   }, [dispatch]);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <Container style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -35,37 +23,6 @@ export default function PersonnelsPage() {
           ))}
         </Grid>
       </Grid>
-      <PersonnelDialogForm open={open} handleClose={handleClose} />
-      <Button
-        onClick={handleClickOpen}
-        variant="contained"
-        sx={{
-          position: 'absolute',
-          backgroundColor: '#121212',
-          fontSize: {
-            xs: 24,
-            sm: 16,
-          },
-          padding: 0,
-          top: {
-            xs: 4,
-            sm: 6,
-          },
-          right: {
-            xs: 5,
-            sm: 30,
-          },
-          width: {
-            xs: 30,
-            sm: 120,
-          },
-          color: {
-            xs: 'red',
-          },
-        }}
-      >
-        {smallScreen ? '+' : 'Додати працівника'}
-      </Button>
     </Container>
   );
 }

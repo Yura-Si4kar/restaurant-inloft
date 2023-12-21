@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
-import OrderListItem from '../OrderListItem';
+import OrderListItem from '../Items/OrderListItem';
 import CloseIcon from '@mui/icons-material/Close';
 import {
   selectOrdersList,

@@ -1,5 +1,6 @@
 export const STORAGE_KEY = 'orders';
-export const menuApi = 'https://shy-antelope.cyclic.app/';
+export const menuApi = 'http://localhost:3001/';
+// export const menuApi = 'https://shy-antelope.cyclic.app/';
 
 export const initialValue = {
   isLoading: false,
@@ -11,4 +12,5 @@ export const initialValue = {
   tables: [],
   personnels: [],
   sales: [],
+  search: ''
 };

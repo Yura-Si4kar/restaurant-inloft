@@ -25,3 +25,7 @@ export function selectPersonnelsList(state) {
 export function selectStatisticsList(state) {
   return state.sales;
 }
+
+export function selectSearchString(state) {
+  return state.search;
+}
