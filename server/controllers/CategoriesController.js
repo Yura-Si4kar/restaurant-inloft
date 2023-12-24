@@ -14,6 +14,9 @@ class CategoriesController {
 
         if (url.includes('/foods')) {
             const result = [];
+            delete Models.Personnels;
+            delete Models.Tables;
+            delete Models.Sales;
             const promises = Object.values(Models).map(async (Model) => {
                 try {
                     const data = await Model.find().sort({ name: 1 });
@@ -78,16 +81,38 @@ class CategoriesController {
     }
 
     async updateOne(req, res, next) {
-        this.Model
-            .findByIdAndUpdate(req.params.id, req.body)
-            .then((result) => {
-                res
-                    .status(200)
-                    .json(result);
-            })
-            .catch(() => {
-                next(ApiError.internal)
-            })     
+        const { rate } = req.body;
+
+        if (rate) {
+            try {
+                const result = await this.Model.findById(req.params.id);
+
+                // Оновлюємо кількість голосів та суму рейтингів
+                result.count += 1;
+                result.totalRating += rate;
+
+                // Розраховуємо середній рейтинг
+                result.rate = result.totalRating / result.count;
+
+                // Зберігаємо оновлені дані
+                await result.save();
+
+                res.status(200).json(result);
+            } catch (error) {
+                next(ApiError.internal(error.message));
+            }
+        } else {
+            this.Model
+                .findByIdAndUpdate(req.params.id, req.body)
+                .then((result) => {
+                    res
+                        .status(200)
+                        .json(result);
+                })
+                .catch(() => {
+                    next(ApiError.internal)
+                })     
+        }
     }
 }
 

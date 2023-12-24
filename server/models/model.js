@@ -11,7 +11,9 @@ const categoriesSchema = new Schema({
     dsc: {type: String, required: true},
     price: {type: Number, required: true},
     rate: {type: Number, required: true},
-    country: {type: String, required: true}
+    country: { type: String, required: true },
+    count: { type: Number, default: 0 },
+    totalRating: { type: Number, default: 0 },
 })
 
 const tablesSchema = new Schema({
