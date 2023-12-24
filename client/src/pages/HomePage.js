@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  selectIsLoading,
   selectMenuList,
   selectPagesLimit,
   selectSearchString,
@@ -12,14 +13,14 @@ import { Box } from '@mui/material';
 import MenuListItem from '../components/Items/MenuListItem';
 import OrderPopupBtn from '../components/Popup/PopupBtn/OrderPopupBtn';
 import { ALL_MENU_LIST_PARAM } from '../config/consts';
-import updateList from '../utils/updateList';
 import PagePagination from '../components/Pagination';
+import Loading from '../components/Loading';
 
 export default function HomePage() {
   const dispatch = useDispatch();
-  const menu = useSelector(selectMenuList);
+  const list = useSelector(selectMenuList);
+      const loading = useSelector(selectIsLoading);  
   const searchValue = useSelector(selectSearchString);
-  const list = updateList(menu, searchValue);
   const [page, setPage] = useState(1);
   const limit = useSelector(selectPagesLimit);
   const total = useSelector(selectTotalPages);
@@ -29,10 +30,14 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    dispatch(getMenuList(ALL_MENU_LIST_PARAM, page, limit));
+    dispatch(getMenuList(ALL_MENU_LIST_PARAM, page, limit, searchValue));
     dispatch(getOrderList());
-  }, [dispatch, page, limit]);
-  
+  }, [dispatch, page, limit, searchValue]);
+
+  if (loading) {
+    return <Loading/>
+  }
+
   return (
     <>
       <Container maxWidth="1300px">
@@ -40,7 +45,7 @@ export default function HomePage() {
           style={{
             display: 'flex',
             flexWrap: 'wrap',
-            justiryContent: 'center',
+            justifyContent: 'center',
             margin: '0 auto',
           }}
         >
@@ -48,7 +53,7 @@ export default function HomePage() {
             <MenuListItem key={item._id} item={item} />
           ))}
         </Box>
-        <PagePagination pages={total} onPageChange={handlePageChange} />
+        {list.length && <PagePagination pages={total} onPageChange={handlePageChange} />}
       </Container>
       <OrderPopupBtn />
     </>

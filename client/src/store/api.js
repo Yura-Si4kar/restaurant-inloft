@@ -1,7 +1,11 @@
 import { menuApi } from '../config/config';
 
-export function getFetchListByCategories(params, page, limit) {
-  if (paramsValidation(params)) {
+export function getFetchListByCategories(params, page, limit, search) {
+  if (search) {
+    const queryString = `${params}?page=${page}&limit=${limit}&search=${search}`;
+
+    return fetch(menuApi + queryString).then((res) => res.json());
+  } else if (paramsValidation(params)) {
     const queryString = `${params}?page=${page}&limit=${limit}`;
 
     return fetch(menuApi + queryString).then((res) => res.json());

@@ -11,15 +11,13 @@ import { getMenuList } from '../store/actions/servicesActions';
 import { Box, Container, Typography } from '@mui/material';
 import MenuListItem from '../components/Items/MenuListItem';
 import OrderPopupBtn from '../components/Popup/PopupBtn/OrderPopupBtn';
-import updateList from '../utils/updateList';
 import PagePagination from '../components/Pagination';
 
 export default function CategoryPage() {
   const dispatch = useDispatch();
   const params = useParams();
-  const menu = useSelector(selectMenuList);
+  const list = useSelector(selectMenuList);
   const searchValue = useSelector(selectSearchString);
-  const list = updateList(menu, searchValue);
   const [page, setPage] = useState(1);
   const limit = useSelector(selectPagesLimit);
   const total = useSelector(selectTotalPages);
@@ -29,8 +27,8 @@ export default function CategoryPage() {
   };
 
   useEffect(() => {
-    dispatch(getMenuList(params.item, page, limit));
-  }, [dispatch, params.item, limit, page]);
+    dispatch(getMenuList(params.item, page, limit, searchValue));
+  }, [dispatch, params.item, limit, page, searchValue]);
 
   return (
     <>
@@ -52,7 +50,7 @@ export default function CategoryPage() {
             <MenuListItem key={item._id} item={item} />
           ))}
         </div>
-        <PagePagination pages={total} onPageChange={handlePageChange} />
+        {list.length && <PagePagination pages={total} onPageChange={handlePageChange} />}
         <OrderPopupBtn />
       </Container>
     </>

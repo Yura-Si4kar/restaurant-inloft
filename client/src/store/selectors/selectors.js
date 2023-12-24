@@ -2,6 +2,10 @@ export function selectIsAuth(state) {
   return state.isAuth;
 }
 
+export function selectIsLoading(state) {
+  return state.isLoading;
+}
+
 export function selectUser(state) {
   return state.user;
 }
