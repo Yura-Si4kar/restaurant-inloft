@@ -8,9 +8,10 @@ class CategoriesController {
     
     async getAll(req, res, next) {
         const url = req.originalUrl;
-        let { page, limit } = req.query;
+        let { search, page, limit } = req.query;
         page = page !== undefined ? parseInt(page, 10) : 1;
         limit = limit !== undefined ? parseInt(limit, 10) : 12;
+        search = search || '';
 
         if (url.includes('/foods')) {
             const result = [];
@@ -28,13 +29,15 @@ class CategoriesController {
 
             await Promise.all(promises);
 
+            const filteredResult = result.filter((item) => item.name.toLowerCase().includes(search.toLowerCase())).sort((a, b) => a.name.localeCompare(b.name));
+
             const startIndex = (page - 1) * limit;
             const endIndex = startIndex + parseInt(limit, 10);
 
-            const collection = result.slice(startIndex, endIndex);
+            const collection = filteredResult.slice(startIndex, endIndex);
 
             // Отримати загальну кількість записів для розрахунку загальної кількості сторінок
-            const totalItems = result.length;
+            const totalItems = filteredResult.length;
 
             // Обчислити загальну кількість сторінок
             const total = Math.ceil(totalItems / limit);
@@ -42,15 +45,15 @@ class CategoriesController {
             res.status(200).json({ collections: collection, total });
         } else {
             this.Model
-                .find()
+                .find({ name: { $regex: new RegExp(search, 'i') } })
                 .sort({ name: 1 })
-                .then((allData) => {
-                    const totalElements = allData.length;
+                .then((filteredData) => {
+                    const totalElements = filteredData.length;
                     const total = Math.ceil(totalElements / limit);
 
-                    // Застосовуємо обмеження та сторінку до колекції та відправляємо разом з кількістю сторінок
+                    // Застосовуємо обмеження та сторінку до відфільтрованої колекції
                     this.Model
-                        .find()
+                        .find({ name: { $regex: new RegExp(search, 'i') } })
                         .sort({ name: 1 })
                         .limit(parseInt(limit, 10))
                         .skip((page - 1) * limit)
