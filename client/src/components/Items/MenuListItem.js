@@ -65,14 +65,16 @@ export default function MenuListItem({ item }) {
             <Typography variant="p" color="yellowgreen">
               Ціна: {item.price} $
             </Typography>
-            <Typography variant="span">
+            <Typography variant="span" className='d-flex align-items-center'>
               <Rating
                 name="simple-controlled"
                 value={rating}
+                precision={0.1}
                 onChange={(event, newValue) => {
                   changeRating(newValue);
                 }}
               />
+              <Typography className='mx-2' variant='span'>{ Math.floor(rating * 10) / 10 }</Typography>
             </Typography>
             <ExpandMore
               expand={expanded}

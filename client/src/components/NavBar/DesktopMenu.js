@@ -1,5 +1,5 @@
-import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Box, Button, Menu, MenuItem, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiFood } from '@mdi/js';
 
@@ -59,17 +59,26 @@ export const DesktopMenu = ({ anchorEl, classes, handleOpen, handleClose }) => (
           </Link>
         </MenuItem>
       </Menu>
-      <Button onClick={handleClose} sx={{ my: 2, color: 'white', display: 'block' }}>
+      <Button
+        onClick={handleClose}
+        sx={{ my: 2, color: 'white', display: 'block' }}
+      >
         <Link className={classes.mainMenuLinks} to="/tables">
           Tables
         </Link>
       </Button>
-      <Button onClick={handleClose} sx={{ my: 2, color: 'white', display: 'block' }}>
+      <Button
+        onClick={handleClose}
+        sx={{ my: 2, color: 'white', display: 'block' }}
+      >
         <Link className={classes.mainMenuLinks} to="/personnels">
           Personnel
         </Link>
       </Button>
-      <Button onClick={handleClose} sx={{ my: 2, color: 'white', display: 'block' }}>
+      <Button
+        onClick={handleClose}
+        sx={{ my: 2, color: 'white', display: 'block' }}
+      >
         <Link className={classes.mainMenuLinks} to="/statistics">
           Statistics
         </Link>

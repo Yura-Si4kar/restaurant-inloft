@@ -13,11 +13,13 @@ import {
   OVERWRITE_ORDER_ITEM,
   REMOVE_ORDER_ITEM,
   SET_AUTH,
+  SET_CURRENT_PAGE,
   SET_LOADING,
   SET_MENU_LIST,
   SET_ORDER_LIST,
   SET_SALES_LIST,
   SET_SEARCH_VALUE,
+  SET_TOTAL_PAGES,
   SET_USER,
   TIE_THE_ORDER_TO_THE_TABLE,
 } from '../actions/servicesActions';
@@ -70,7 +72,11 @@ export default function reducer(state = initialValue, { type, payload }) {
     case DELETE_EMPLOYEE:
       return removeWorker(state, payload);
     case SET_SEARCH_VALUE:
-      return {...state, search: payload};
+      return { ...state, search: payload };
+    case SET_CURRENT_PAGE:
+      return { ...state, page: payload };
+    case SET_TOTAL_PAGES:
+      return { ...state, total: payload };
 
     default:
       return state;
@@ -85,7 +91,6 @@ function addMenuItem(state, item) {
 }
 
 function changeRating(state, item) {
-  console.log(item);
   return {
     ...state,
     list: state.list.map((elem) => (elem._id !== item._id ? elem : item)),

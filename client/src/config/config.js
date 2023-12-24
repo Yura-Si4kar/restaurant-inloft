@@ -12,5 +12,7 @@ export const initialValue = {
   tables: [],
   personnels: [],
   sales: [],
-  search: ''
+  search: '',
+  pagesLimit: 12,
+  total: 1
 };

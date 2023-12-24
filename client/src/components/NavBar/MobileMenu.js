@@ -8,7 +8,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Icon from '@mdi/react';
 import { mdiFood } from '@mdi/js';
 
-export function MobileMenu({ handleOpenNavMenu, handleCloseNavMenu, anchorElNav }) {
+export function MobileMenu({
+  handleOpenNavMenu,
+  handleCloseNavMenu,
+  anchorElNav,
+}) {
   return (
     <>
       <Typography
@@ -65,22 +69,31 @@ export function MobileMenu({ handleOpenNavMenu, handleCloseNavMenu, anchorElNav 
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/tables" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link
+              to="/tables"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               Tables
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/personnels" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link
+              to="/personnels"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               Personnel
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/statistics" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link
+              to="/statistics"
+              style={{ textDecoration: 'none', color: 'inherit' }}
+            >
               Statistics
             </Link>
           </MenuItem>
         </Menu>
       </Box>
     </>
-  )
-};
+  );
+}

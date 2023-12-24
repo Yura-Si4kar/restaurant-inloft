@@ -26,6 +26,5 @@ export const pages = [
   'porks',
   'sandwiches',
   'sausages',
-  'steaks',
-  'foods',
+  'steaks'
 ];

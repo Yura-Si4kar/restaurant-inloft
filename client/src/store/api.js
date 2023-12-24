@@ -1,7 +1,13 @@
 import { menuApi } from '../config/config';
 
-export function getFetchListByCategories(params) {
-  return fetch(menuApi + params).then((res) => res.json());
+export function getFetchListByCategories(params, page, limit) {
+  if (paramsValidation(params)) {
+    const queryString = `${params}?page=${page}&limit=${limit}`;
+
+    return fetch(menuApi + queryString).then((res) => res.json());
+  } else {
+    return fetch(menuApi + params).then((res) => res.json());
+  }
 }
 
 export function setNewRatingToTheMenuItem(params, id, newItem) {
@@ -64,4 +70,8 @@ export function addSalesData(obj) {
     },
     body: JSON.stringify(obj),
   });
+}
+
+function paramsValidation(param) {
+  return param !== 'tables' || param !== 'personnels' || param !== 'sales';
 }

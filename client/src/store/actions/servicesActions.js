@@ -61,11 +61,18 @@ export const calculateTheExtractor = createAction(CALCULATE_THE_CLIENT);
 export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE';
 export const setSearchValue = createAction(SET_SEARCH_VALUE);
 
-export const getMenuList = (params) => (dispatch, getState) => {
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const setCurrrentPage = createAction(SET_CURRENT_PAGE);
+
+export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
+export const setTotal = createAction(SET_TOTAL_PAGES);
+
+export const getMenuList = (params, page, limit) => (dispatch, getState) => {
   dispatch(setLoading(true));
-  getFetchListByCategories(params)
+  getFetchListByCategories(params, page, limit)
     .then((data) => {
-      dispatch(setMenuList(data));
+      dispatch(setMenuList(data.collections));
+      dispatch(setTotal(data.total));
     })
     .catch((error) => {
       console.error(error);

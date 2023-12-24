@@ -55,4 +55,4 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export {ExpandMore, Search, SearchIconWrapper, StyledInputBase };
+export { ExpandMore, Search, SearchIconWrapper, StyledInputBase };

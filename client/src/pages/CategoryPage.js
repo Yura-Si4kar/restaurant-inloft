@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { selectMenuList, selectSearchString } from '../store/selectors/selectors';
+import {
+  selectMenuList,
+  selectPagesLimit,
+  selectSearchString,
+  selectTotalPages,
+} from '../store/selectors/selectors';
 import { getMenuList } from '../store/actions/servicesActions';
 import { Box, Container, Typography } from '@mui/material';
 import MenuListItem from '../components/Items/MenuListItem';
 import OrderPopupBtn from '../components/Popup/PopupBtn/OrderPopupBtn';
 import updateList from '../utils/updateList';
+import PagePagination from '../components/Pagination';
 
 export default function CategoryPage() {
   const dispatch = useDispatch();
@@ -14,10 +20,17 @@ export default function CategoryPage() {
   const menu = useSelector(selectMenuList);
   const searchValue = useSelector(selectSearchString);
   const list = updateList(menu, searchValue);
+  const [page, setPage] = useState(1);
+  const limit = useSelector(selectPagesLimit);
+  const total = useSelector(selectTotalPages);
+
+  const handlePageChange = (newPage) => {
+        setPage(newPage);
+  };
 
   useEffect(() => {
-    dispatch(getMenuList(params.item));
-  }, [dispatch, params.item]);
+    dispatch(getMenuList(params.item, page, limit));
+  }, [dispatch, params.item, limit, page]);
 
   return (
     <>
@@ -39,6 +52,7 @@ export default function CategoryPage() {
             <MenuListItem key={item._id} item={item} />
           ))}
         </div>
+        <PagePagination pages={total} onPageChange={handlePageChange} />
         <OrderPopupBtn />
       </Container>
     </>

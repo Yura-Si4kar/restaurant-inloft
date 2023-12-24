@@ -29,3 +29,15 @@ export function selectStatisticsList(state) {
 export function selectSearchString(state) {
   return state.search;
 }
+
+export function selectPagesLimit(state) {
+  return state.pagesLimit;
+}
+
+export function selectCurrentPage(state) {
+  return state.page;
+}
+
+export function selectTotalPages(state) {
+  return state.total;
+}
