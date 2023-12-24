@@ -7,17 +7,61 @@ class CategoriesController {
     }
     
     async getAll(req, res, next) {
-        this.Model
-            .find() // повертає вказівник на повернену колекцію документів - cursor(інкапсулюють в собі набори отриманих з БД об'єктів)
-            .sort({name: 1})
-            .then((bbqs) => {
-                res
-                    .status(200)
-                    .json(bbqs);
-            })
-            .catch((e) => {
-                next(ApiError.internal(e.message))
-            })
+        const url = req.originalUrl;
+        let { page, limit } = req.query;
+        page = page !== undefined ? parseInt(page, 10) : 1;
+        limit = limit !== undefined ? parseInt(limit, 10) : 12;
+
+        if (url.includes('/foods')) {
+            const result = [];
+            const promises = Object.values(Models).map(async (Model) => {
+                try {
+                    const data = await Model.find().sort({ name: 1 });
+                    result.push(...data);
+                } catch (error) {
+                    return next(ApiError.internal(error.message));
+                }
+            });
+
+            await Promise.all(promises);
+
+            const startIndex = (page - 1) * limit;
+            const endIndex = startIndex + parseInt(limit, 10);
+
+            const collection = result.slice(startIndex, endIndex);
+
+            // Отримати загальну кількість записів для розрахунку загальної кількості сторінок
+            const totalItems = result.length;
+
+            // Обчислити загальну кількість сторінок
+            const total = Math.ceil(totalItems / limit);
+
+            res.status(200).json({ collections: collection, total });
+        } else {
+            this.Model
+                .find()
+                .sort({ name: 1 })
+                .then((allData) => {
+                    const totalElements = allData.length;
+                    const total = Math.ceil(totalElements / limit);
+
+                    // Застосовуємо обмеження та сторінку до колекції та відправляємо разом з кількістю сторінок
+                    this.Model
+                        .find()
+                        .sort({ name: 1 })
+                        .limit(parseInt(limit, 10))
+                        .skip((page - 1) * limit)
+                        .then((collection) => {
+                            res.status(200).json({ collections: collection, total });
+                        })
+                        .catch((e) => {
+                            next(ApiError.internal(e.message));
+                        });
+                })
+                .catch((e) => {
+                    next(ApiError.internal(e.message));
+                });
+        }
     }
     
     async getOne(req, res, next) {
