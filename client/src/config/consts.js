@@ -11,6 +11,7 @@ export const CATEGORY_ROUTE = '/categories/:item';
 export const TABLES_ROUTE = '/tables';
 export const PERSONNELS_ROUTE = '/personnels';
 export const STATISTICS_ROUTE = '/statistics';
+export const ERROR_ROUTE = '/error';
 
 export const pages = [
   'bbqs',

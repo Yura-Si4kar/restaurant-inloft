@@ -6,6 +6,10 @@ export function selectIsLoading(state) {
   return state.isLoading;
 }
 
+export function selectIsError(state) {
+  return state.error;
+}
+
 export function selectUser(state) {
   return state.user;
 }

@@ -19,6 +19,9 @@ export const setLoading = createAction(SET_LOADING);
 export const SET_AUTH = 'SET_AUTH';
 export const setIsAuth = createAction(SET_AUTH);
 
+export const SET_ERROR = 'SET_ERROR';
+export const setError = createAction(SET_ERROR);
+
 export const SET_USER = 'SET_USER';
 export const setUser = createAction(SET_USER);
 
@@ -73,9 +76,11 @@ export const getMenuList = (params, page, limit, search) => (dispatch, getState)
     .then((data) => {
       dispatch(setMenuList(data.collections));
       dispatch(setTotal(data.total));
+      dispatch(setError(false))
     })
     .catch((error) => {
       console.error(error);
+      dispatch(setError(true))
     })
     .finally(() => {
       dispatch(setLoading(false));

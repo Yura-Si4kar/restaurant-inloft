@@ -50,7 +50,7 @@ export default function CategoryPage() {
             <MenuListItem key={item._id} item={item} />
           ))}
         </div>
-        {list.length && <PagePagination pages={total} onPageChange={handlePageChange} />}
+        {list.length === 0 || <PagePagination pages={total} onPageChange={handlePageChange} />}
         <OrderPopupBtn />
       </Container>
     </>
