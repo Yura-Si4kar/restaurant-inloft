@@ -70,6 +70,9 @@ export const setCurrrentPage = createAction(SET_CURRENT_PAGE);
 export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 export const setTotal = createAction(SET_TOTAL_PAGES);
 
+export const SET_PAGES_LIMIT = 'SET_PAGES_LIMIT';
+export const setPagesLimit = createAction(SET_PAGES_LIMIT);
+
 export const getMenuList = (params, page, limit, search) => (dispatch, getState) => {
   dispatch(setLoading(true));
   getFetchListByCategories(params, page, limit, search)

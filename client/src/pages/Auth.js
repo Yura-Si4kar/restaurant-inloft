@@ -102,7 +102,8 @@ export default function Auth() {
             </Form.Text>
           )}
           <MyButton
-            variant="outline-success"
+            variant="contained"
+            color="success"
             className="mt-3"
             type="submit"
             onClick={submit}

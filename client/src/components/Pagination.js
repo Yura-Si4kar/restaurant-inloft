@@ -1,30 +1,37 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
-const darkTheme = createTheme({ palette: { mode: 'dark' } });
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+    pagination: {
+        '& .MuiPaginationItem-root': {
+            color: theme.palette.primary.main, // колір неактивних сторінок
+        },
+        '& .MuiPaginationItem-page.Mui-selected': {
+            backgroundColor: theme.palette.primary.main, // колір активної сторінки
+            color: theme.palette.common.white, // колір тексту активної сторінки
+            border: `1px solid ${theme.palette.primary.main}`, // колір бордера для активної сторінки
+        },
+    },
+}));
 
 export default function PagePagination({ pages, onPageChange }) {
-    const pagesArray = Array.from({ length: pages }, (_, index) => index + 1);
-
-    const handlePageChange = (e) => {
-        const newPage = e.target.value;
+    const handlePageChange = (event, newPage) => {
         onPageChange(newPage);
     };
 
+    const classes = useStyles();
+
     return (
-        <ThemeProvider theme={darkTheme}>
-            <ButtonToolbar aria-label="Toolbar with button groups">
-                <ButtonGroup className="mx-auto" aria-label="First group">
-                    {pagesArray.map((page) => (
-                        <Button key={page} value={page} onClick={(e) => handlePageChange(e)}>
-                            {page}
-                        </Button>
-                    ))}
-                </ButtonGroup>
-            </ButtonToolbar>
-        </ThemeProvider>
+        <Stack spacing={12}>
+            <Pagination
+                className={`${classes.pagination} mx-auto`}
+                count={pages}
+                onChange={handlePageChange}
+                variant="outlined"
+            />
+        </Stack>
     );
 }

@@ -20,7 +20,6 @@ export default function App() {
 
   useEffect(() => {
     dispatch(getTableList(TABLES_LIST_PARAM));
-
   }, [dispatch]);
 
   return (

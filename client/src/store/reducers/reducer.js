@@ -18,6 +18,7 @@ import {
   SET_LOADING,
   SET_MENU_LIST,
   SET_ORDER_LIST,
+  SET_PAGES_LIMIT,
   SET_SALES_LIST,
   SET_SEARCH_VALUE,
   SET_TOTAL_PAGES,
@@ -50,6 +51,8 @@ export default function reducer(state = initialValue, { type, payload }) {
       return { ...state, personnels: [...payload] };
     case SET_SALES_LIST:
       return { ...state, sales: payload };
+    case SET_PAGES_LIMIT:
+      return { ...state, pagesLimit: payload };
     case ADD_MENU_ITEM_TO_ORDER_LIST:
       return addMenuItem(state, payload);
     case CHANGE_ELEMENT_RATING:

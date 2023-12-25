@@ -17,8 +17,7 @@ import { Box } from '@mui/material';
 import TableDialogForm from './Popup/TableDialogForm';
 import ModalButton from './NavBar/ModalButton';
 import PersonnelDialogForm from './Popup/PersonnelDialogForm';
-import IconButton from '@mui/material/IconButton';
-import MoreIcon from '@mui/icons-material/MoreVert';
+import SettingMenu from './NavBar/SettingMenu';
 
 export default function NavigationBar() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -74,14 +73,7 @@ export default function NavigationBar() {
               </ModalButton>
             )}
           </Box>
-          <IconButton
-            size="large"
-            aria-label="display more actions"
-            edge="end"
-            color="inherit"
-          >
-            <MoreIcon />
-          </IconButton>
+          <SettingMenu/>
         </Toolbar>
         <TableDialogForm open={open} handleClose={modalClose} />
         <PersonnelDialogForm

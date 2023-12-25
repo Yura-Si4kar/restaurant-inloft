@@ -34,7 +34,7 @@ export default function HomePage() {
   return (
     <>
       <Container maxWidth="1300px">
-        <div>
+        <div style={{paddingBottom: '20px'}}>
           <Box
             style={{
               display: 'flex',

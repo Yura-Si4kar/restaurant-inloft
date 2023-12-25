@@ -32,7 +32,7 @@ export default function CategoryPage() {
 
   return (
     <>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" style={{paddingBottom: '20px'}}>
         <Box>
           <Typography
             variant="h1"
