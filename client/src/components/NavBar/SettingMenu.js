@@ -28,6 +28,7 @@ export default function SettingMenu() {
     const handleChange = (e) => {
         const number = +e.target.value;
         setLimit(number);
+        handleClose();
     }
     
     useEffect(() => {
@@ -39,70 +40,71 @@ export default function SettingMenu() {
         dispatch(setIsAuth(false));
         navigate(LOGIN_ROUTE);
         endSession();
+        handleClose();
     }
     
     return (
         <>
             <Box sx={{ flexGrow: 0 }}>
-            <IconButton
-                size="large"
-                aria-label="display more actions"
-                edge="end"
-                color="inherit"
-                onClick={handleOpen}
-            >
-                <MoreIcon />
-            </IconButton>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={open}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(open)}
-              onClose={handleClose}
-            >
-                <MenuItem onClick={handleClose}>
-                    <Box >
+                <IconButton
+                    size="large"
+                    aria-label="display more actions"
+                    edge="end"
+                    color="inherit"
+                    onClick={handleOpen}
+                >
+                    <MoreIcon />
+                </IconButton>
+                <Menu
+                    sx={{ mt: '45px' }}
+                    id="menu-appbar"
+                    anchorEl={open ? () => document.body : null}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    open={Boolean(open)}
+                    onClose={handleClose}
+                >
+                <MenuItem>
+                    <div>
                         <FormControl sx={{ m: 1, minWidth: 120 }}>
                             <InputLabel id="demo-simple-select-helper-label">
                                 Кі-сть позицій
                             </InputLabel>
-                        <Select
-                            labelId="demo-simple-select-helper-label"
-                            id="demo-simple-select-helper"
-                            value={limit}
-                            label="limit"
-                            onChange={(e) => handleChange(e)}
-                        >
-                            {limitElements.map((el) => 
-                                <MenuItem key={el} value={el}>
-                                    {el}
-                                </MenuItem>
-                            )}
-                        </Select>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                value={limit}
+                                label="limit"
+                                onChange={(e) => handleChange(e)}
+                            >
+                                {limitElements.map((el) => (
+                                    <MenuItem key={el} value={el}>
+                                        {el}
+                                    </MenuItem>
+                                ))}
+                            </Select>
                         </FormControl>
-                    </Box>
+                    </div>
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem>
                     <MyButton
                         variant="contained"
-                        color="error"   
-                        style={{width: '100%'}}    
-                        onClick={logOut}    
+                        color="error"
+                        style={{ width: '100%' }}
+                        onClick={logOut}
                     >
                         Exit
                     </MyButton>
                 </MenuItem>
-            </Menu>
-          </Box>
+                </Menu>
+            </Box>
         </>
     )
 }

@@ -1,0 +1,16 @@
+.category-container {
+  padding-bottom: 20px;
+}
+
+.category-title {
+  font-weight: 700;
+  font-size: 25px;
+  text-align: center;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -10px;
+}

@@ -4,9 +4,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { Typography } from '@mui/material';
+import { FormControl, TextField, Typography } from '@mui/material';
 import { addItem } from '../../store/actions/tablesActions';
 
 const INITIAL_VALUE = {
@@ -53,20 +52,20 @@ export default function TableDialogForm({ open, handleClose }) {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Заповніть поля</DialogTitle>
       <DialogContent>
-        <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Назва столику: </Form.Label>
-            <Form.Control
+        <form>
+          <FormControl fullWidth sx={{ marginBottom: 2 }}>
+            <TextField
               type="text"
+              id="name"
               name="name"
-              placeholder="Ім'я"
+              placeholder="Назва столику"
               onChange={getInput}
             />
-          </Form.Group>
+          </FormControl>
           <Typography paragraph className={formState.error ? 'error' : 'hide'}>
             Wrong! Fill in all fields!
           </Typography>
-        </Form>
+        </form>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>

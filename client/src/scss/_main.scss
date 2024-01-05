@@ -1,28 +1,3 @@
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px; /* 1 - вертикальний скроллбар */
-}
-::-webkit-scrollbar-button {
-  background: transparent; /* 2 - кнопка */
-}
-::-webkit-scrollbar-track {
-  background: transparent; /* 3 - трек */
-}
-::-webkit-scrollbar-track-piece {
-  background: transparent; /* 4 – видима частина трека */
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* 5 - повзунок */
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
@@ -41,37 +16,8 @@ code {
   height: 100vh;
 }
 
-.inside_menu {
-  margin-bottom: 30px;
-}
-
-.inside_menu a {
-  margin: 0 30px;
-}
-
-.dishes-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 -10px;
-}
-
-.dishes-list-box {
-  width: 25%;
-  padding: 10px;
-  display: flex;
-  align-items: stretch;
-}
-
-.dishes-list-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px;
-}
-
-.dishes-list-item img {
-  border-radius: 15px;
+.image-responsive {
+  height: auto;
   max-width: 100%;
 }
 

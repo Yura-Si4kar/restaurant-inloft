@@ -3,13 +3,11 @@ import { Doughnut } from 'react-chartjs-2';
 import { Grid, Typography, useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectPersonnelsList } from '../../store/selectors/selectors';
-import useStyles from '../../hooks/useStyles';
 import { createBackgroundsColor } from '../../utils/hexColorGenerator';
 import { generateChartConfig } from '../../utils/chartUtils';
 
 export default function WaitersSalary({ sales }) {
   const waiters = useSelector(selectPersonnelsList);
-  const classes = useStyles();
   const smallScreen = useMediaQuery('(max-width:600px)');
 
   const calculateSalary = () => {
@@ -44,15 +42,14 @@ export default function WaitersSalary({ sales }) {
   );
 
   return (
-    <Grid xs={12} sm={6} item className={classes.chartContainer}>
+    <Grid xs={12} sm={6} item className='chart-container'>
       <Typography
         variant={smallScreen ? 'h5' : 'h4'}
-        className={classes.chartTitle}
-        sx={{ textAlign: { xs: 'center' } }}
+        className='chart-title'
       >
         Активність працівників
       </Typography>
-      <Doughnut data={data} style={{ maxWidth: '100%' }} />
+      <Doughnut data={data} className='chart-pie' />
     </Grid>
   );
 }

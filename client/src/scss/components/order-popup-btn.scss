@@ -1,0 +1,16 @@
+.order__popup-btn {
+    position: fixed !important;
+    bottom: 50px;
+    width: 170px;
+    right: 28px;
+    padding: 3px !important;
+    font-size: 14px !important;
+
+    @media (min-width: 900px) {
+        position: fixed !important;
+        bottom: 23px;
+        width: 280px;
+        right: 28px;
+        font-size: 18px !important;
+    }
+}

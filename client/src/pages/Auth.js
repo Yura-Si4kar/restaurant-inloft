@@ -59,52 +59,47 @@ export default function Auth() {
   };
 
   return (
-    <Container
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: window.innerHeight - 54 }}
-    >
-      <Card style={{ width: 600 }} className="p-5">
-        {error && <Alert variant={'danger'}>{error}</Alert>}
-        <h2 className="m-auto">{isLogin ? 'Авторизація' : 'Реєстрація'}</h2>
-        <Form className="d-flex flex-column">
+    <Container className="auth-container">
+      <Card className="auth-card">
+        {error && <Alert variant="danger">{error}</Alert>}
+        <h2 className="auth-title">{isLogin ? 'Авторизація' : 'Реєстрація'}</h2>
+        <Form className="auth-form">
           <MyInput
-            className="mt-3"
+            className="auth-input"
             placeholder="Введіть ваш email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <MyInput
-            className="mt-3"
+            className="auth-input"
             placeholder="Введіть ваш пароль"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
           />
-          {!isLogin ? (
+          {!isLogin && (
             <MyInput
-              className="mt-3"
+              className="auth-input"
               placeholder="Повторіть ваш пароль"
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
               type="password"
             />
-          ) : null}
+          )}
         </Form>
-        <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
+        <Row className="auth-links">
           {isLogin ? (
-            <Form.Text>
-              Немає аккаунта?{' '}
-              <Link to={AUTHORIZATION_ROUTE}>Зареєструйся!</Link>
+            <Form.Text className='auth-link'>
+              Немає аккаунта? <Link to={AUTHORIZATION_ROUTE}>Зареєструйся!</Link>
             </Form.Text>
           ) : (
-            <Form.Text>
+            <Form.Text className='auth-link'>
               Уже зареєстровані? <Link to={LOGIN_ROUTE}>Увійдіть!</Link>
             </Form.Text>
           )}
           <MyButton
             variant="contained"
             color="success"
-            className="mt-3"
             type="submit"
             onClick={submit}
           >

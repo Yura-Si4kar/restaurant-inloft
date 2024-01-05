@@ -3,23 +3,14 @@ import { Link } from 'react-router-dom';
 import Icon from '@mdi/react';
 import { mdiFood } from '@mdi/js';
 
-export const DesktopMenu = ({ anchorEl, classes, handleOpen, handleClose }) => (
+export const DesktopMenu = ({ anchorEl, handleOpen, handleClose }) => (
   <>
     <Typography
       variant="h5"
       noWrap
       component="a"
       href="/"
-      sx={{
-        mr: 2,
-        display: { xs: 'flex', md: 'none' },
-        flexGrow: 1,
-        fontFamily: 'monospace',
-        fontWeight: 700,
-        letterSpacing: '.1rem',
-        color: 'red',
-        textDecoration: 'none',
-      }}
+      className='navbar__logo'
     >
       <Icon
         path={mdiFood}
@@ -27,15 +18,15 @@ export const DesktopMenu = ({ anchorEl, classes, handleOpen, handleClose }) => (
         size={1.2}
         horizontal
         color="red"
-        style={{ marginRight: 20 }}
+        className='navbar__logo-icon'
       />
       Loft
     </Typography>
-    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+    <Box className='navbar__submenu'>
       <Button
         id="basic-button"
         onClick={handleOpen}
-        className={classes.subMenuBtn}
+        className='navbar__submenu-button'
       >
         Restaurant Menu
       </Button>
@@ -49,37 +40,37 @@ export const DesktopMenu = ({ anchorEl, classes, handleOpen, handleClose }) => (
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link className={classes.restaurantSubMenu} to="/foods">
+          <Link className='navbar__submenu-items' to="/foods">
             Меню
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link className={classes.restaurantSubMenu} to="/categories">
+          <Link className='navbar__submenu-items' to="/categories">
             За категоріями
           </Link>
         </MenuItem>
       </Menu>
       <Button
         onClick={handleClose}
-        sx={{ my: 2, color: 'white', display: 'block' }}
+        className='navbar__menu-buttons'
       >
-        <Link className={classes.mainMenuLinks} to="/tables">
+        <Link className='navbar__submenu-items' to="/tables">
           Tables
         </Link>
       </Button>
       <Button
         onClick={handleClose}
-        sx={{ my: 2, color: 'white', display: 'block' }}
+        className='navbar__menu-buttons'
       >
-        <Link className={classes.mainMenuLinks} to="/personnels">
+        <Link className='navbar__submenu-items' to="/personnels">
           Personnel
         </Link>
       </Button>
       <Button
         onClick={handleClose}
-        sx={{ my: 2, color: 'white', display: 'block' }}
+        className='navbar__menu-buttons'
       >
-        <Link className={classes.mainMenuLinks} to="/statistics">
+        <Link className='navbar__submenu-items' to="/statistics">
           Statistics
         </Link>
       </Button>

@@ -1,29 +1,29 @@
 import {
   Box,
+  Button,
   Dialog,
   DialogContent,
   DialogTitle,
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { Button } from 'react-bootstrap';
 
 export default function CheckWithdrawalWindow({ open, handleClose, check }) {
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <DialogTitle className='dialog-title'>
         <Typography variant="span">Чек: {check.table}</Typography>
-        <Button variant="contained" style={{ marginLeft: 'auto' }}>
+        <Button variant="outline">
           Друк
         </Button>
       </DialogTitle>
-      <DialogContent style={{ width: 500 }}>
+      <DialogContent className='dialog__content'>
         <Box>
           {check.order.map((element) => (
             <Typography
               key={element._id}
               paragraph
-              style={{ display: 'flex', justifyContent: 'space-between' }}
+              className='dialog__content-details'
             >
               <Typography variant="span">{element.name}</Typography>
               <Typography variant="span">{element.numbers} шт.</Typography>
@@ -34,38 +34,31 @@ export default function CheckWithdrawalWindow({ open, handleClose, check }) {
           ))}
         </Box>
         <Box>
-          <Typography variant="h6" style={{ fontSize: 16, marginBottom: 16 }}>
+          <Typography variant="h6" className='dialog-waiter'>
             Офіціант: {check.waiter}
           </Typography>
         </Box>
         <Box>
           <Typography
             paragraph
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'end',
-            }}
+            className='payment-details'
           >
-            <Typography variant="span" style={{ width: 41 + '%' }}>
+            <Typography variant="span" className='payment-amount'>
               Сума до сплати:
             </Typography>
             <Typography
               variant="span"
-              style={{
-                borderBottom: '3px dashed rgb(212, 212, 212)',
-                width: 44 + '%',
-              }}
+              className='dashed-line'
             ></Typography>
             <Typography
               variant="span"
-              style={{ width: 15 + '%', textAlign: 'right' }}
+              className='total-amount'
             >
               {check.sum} $
             </Typography>
           </Typography>
         </Box>
-        <Typography paragraph style={{ textAlign: 'center' }}>
+        <Typography paragraph className='non-fiscal-message'>
           ! НЕ ФІСКАЛЬНИЙ !
         </Typography>
       </DialogContent>

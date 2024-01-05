@@ -1,0 +1,12 @@
+.pagination {
+    margin: 0 auto !important;
+
+    & .MuiPaginationItem-root {
+        color: black; // колір неактивних сторінок
+    }
+
+    & .MuiPaginationItem-page.Mui-selected {
+        background-color: black; // колір активної сторінки
+        color: white; // колір тексту активної сторінки
+    }
+}

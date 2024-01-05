@@ -4,9 +4,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { Typography } from '@mui/material';
+import { FormControl, TextField, Typography } from '@mui/material';
 import { addUser } from '../../store/actions/personnelsActions';
 
 const INITIAL_VALUE = {
@@ -57,38 +56,38 @@ export default function PersonnelDialogForm({ open, handleClose }) {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>Заповніть поля</DialogTitle>
       <DialogContent>
-        <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Введіть ім'я працівника: </Form.Label>
-            <Form.Control
+        <form>
+          <FormControl fullWidth className='modal-form'>
+            <TextField
               type="text"
+              id="name"
               name="name"
               placeholder="Ім'я"
               onChange={getInput}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-            <Form.Label>Посада працівника: </Form.Label>
-            <Form.Control
+          </FormControl>
+          <FormControl fullWidth className='modal-form'>
+            <TextField
               type="text"
+              id="position"
               name="position"
               placeholder="нвзва посади"
               onChange={getInput}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
-            <Form.Label>Оплата: </Form.Label>
-            <Form.Control
+          </FormControl>
+          <FormControl fullWidth className='modal-form'>
+            <TextField
               type="text"
+              id="salary"
               name="salary"
               placeholder="відсоток від продажу"
               onChange={getInput}
             />
-          </Form.Group>
+          </FormControl>
           <Typography paragraph className={formState.error ? 'error' : 'hide'}>
             Wrong! Fill in all fields!
           </Typography>
-        </Form>
+        </form>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>

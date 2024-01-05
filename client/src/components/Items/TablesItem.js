@@ -82,7 +82,7 @@ export default function TablesItem({ table }) {
   return (
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Card style={{ position: 'relative' }}>
+        <Card className='table__item'>
           <CardMedia
             component="img"
             height="200"
@@ -93,15 +93,7 @@ export default function TablesItem({ table }) {
             <Button
               onClick={deleteItem}
               variant="text"
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: -10,
-                color: 'blue',
-                fontSize: 30,
-                width: 40,
-                padding: 0,
-              }}
+              className='table__item-delete'
             >
               &#8722;
             </Button>
@@ -146,10 +138,7 @@ export default function TablesItem({ table }) {
                   Замовлення:
                   {table.order.map((element) => (
                     <Typography
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
+                      className='table__item-action'
                       key={element._id}
                       paragraph
                     >
@@ -172,7 +161,7 @@ export default function TablesItem({ table }) {
                     </Typography>
                   </Box>
                   <Box
-                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                    className='table__item-action'
                   >
                     <Button variant="contained" onClick={handleClose}>
                       Видалити

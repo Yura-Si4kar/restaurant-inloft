@@ -4,13 +4,11 @@ import { Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import { selectPersonnelsList } from '../../store/selectors/selectors';
-import useStyles from '../../hooks/useStyles';
 import { generateChartConfig } from '../../utils/chartUtils';
 import { createBackgroundsColor } from '../../utils/hexColorGenerator';
 
 export default function AmountOfSalesByWaiters({ sales }) {
   const waiters = useSelector(selectPersonnelsList);
-  const classes = useStyles();
   const smallScreen = useMediaQuery('(max-width:600px)');
 
   const calculateTheWaitersProfit = () => {
@@ -40,15 +38,14 @@ export default function AmountOfSalesByWaiters({ sales }) {
   );
 
   return (
-    <Grid item xs={12} sm={6} className={classes.chartContainer}>
+    <Grid item xs={12} sm={6} className='chart-container'>
       <Typography
         variant={smallScreen ? 'h5' : 'h4'}
-        className={classes.chartTitle}
-        sx={{ textAlign: { xs: 'center' } }}
+        className='chart-title'
       >
         Дохід від офіціантів
       </Typography>
-      <Pie data={data} style={{ maxWidth: '100%' }} />
+      <Pie data={data} className='chart-pie' />
     </Grid>
   );
 }

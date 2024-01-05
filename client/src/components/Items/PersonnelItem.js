@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Card from 'react-bootstrap/Card';
 import pic from '../../img/unlogin-user-avatars.jpg';
 import {
   Box,
@@ -9,6 +8,7 @@ import {
   CardMedia,
   Collapse,
   Grid,
+  Paper,
   Typography,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
@@ -32,37 +32,24 @@ export default function PersonnelItem({ person }) {
   return (
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Card style={{ position: 'relative' }}>
+        <Paper className='personnel__item'>
           <CardMedia
             component="img"
             image={pic}
             alt={`emploee`}
-            style={{ height: 'auto', maxWidth: 100 + '%' }}
           />
           <CardContent>
             <Button
               onClick={deleteWorkerCard}
               variant="text"
-              style={{
-                position: 'absolute',
-                top: 0,
-                right: -10,
-                color: 'blue',
-                fontSize: 30,
-                width: 40,
-                padding: 0,
-              }}
+              className='personnel__item-delete'
             >
               &#8722;
             </Button>
             <Typography>Ім'я: {person.name}</Typography>
           </CardContent>
           <CardActions
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              paddingLeft: 15,
-            }}
+            className='personnel__item-action'
             disableSpacing
           >
             <Typography>Детальна інформація</Typography>
@@ -78,7 +65,7 @@ export default function PersonnelItem({ person }) {
             <CardContent>
               <Box>Посада: {person.position}</Box>
               <Box>
-                <Box style={{ marginBottom: 20 }}>
+                <Box>
                   <Typography variant="span">
                     Оплата: {person.salary} %, від суми.
                   </Typography>
@@ -86,7 +73,7 @@ export default function PersonnelItem({ person }) {
               </Box>
             </CardContent>
           </Collapse>
-        </Card>
+        </Paper>
       </Grid>
     </React.Fragment>
   );

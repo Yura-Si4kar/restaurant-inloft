@@ -43,7 +43,7 @@ export default function OrderListItem({ item }) {
   return (
     <>
       <ListItem>
-        <Grid container spacing={2} alignItems="center">
+        <Grid container spacing={2} className='order__item'>
           <Grid item xs={6} sm={6} md={6} lg={7}>
             <ListItemText primary={item.name} />
             <ListItemText primary={`${price.toFixed(2)} $`} />
@@ -59,44 +59,22 @@ export default function OrderListItem({ item }) {
             sm={4}
             md={4}
             lg={4}
-            style={{ display: 'flex', justifyContent: 'space-between' }}
+            className='order__item'
           >
             <ButtonGroup
-              sx={{
-                display: {
-                  xs: 'flex',
-                },
-                flexDirection: {
-                  xs: 'column-reverse',
-                  md: 'row',
-                },
-              }}
+              className='order__item-buttons'
             >
               <Button
                 aria-label="reduce"
                 onClick={decrease}
-                sx={{
-                  border: {
-                    xs: '1px solid rgba(144, 202, 249, 0.5) !important',
-                  },
-                  borderRadius: {
-                    xs: '4px !important',
-                  },
-                }}
+                className='order__item-button'
               >
                 <RemoveIcon fontSize="small" />
               </Button>
               <Button
                 aria-label="increase"
                 onClick={increase}
-                sx={{
-                  border: {
-                    xs: '1px solid rgba(144, 202, 249, 0.5) !important',
-                  },
-                  borderRadius: {
-                    xs: '4px !important',
-                  },
-                }}
+                className='order__item-button'
               >
                 <AddIcon fontSize="small" />
               </Button>

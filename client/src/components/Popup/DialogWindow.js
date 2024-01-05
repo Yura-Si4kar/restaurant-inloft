@@ -67,47 +67,24 @@ export default function DialogWindow({ open, handleClose }) {
   return (
     <Dialog
       open={open}
-      style={{ position: 'fixed', bottom: 50, right: 28 }}
-      sx={{
-        minWidth: {
-          xs: '320px',
-          sm: '375px',
-          md: '100%',
-        },
-      }}
+      className='dialog__window'
     >
       <DialogTitle
-        style={{ display: 'flex', justifyContent: 'space-between' }}
+        className='dialog__window-title'
         id="draggable-dialog-title"
       >
         <Typography variant="span">Замовлення</Typography>
-        <CloseIcon style={{ cursor: 'pointer' }} onClick={handleClose} />
+        <CloseIcon className='dialog__window-icon' onClick={handleClose} />
       </DialogTitle>
       <DialogContent
-        sx={{
-          flexGrow: 1,
-          maxWidth: {
-            xs: '100%',
-          },
-        }}
+        className='dialog__window-content'
       >
         <Box
-          sx={{
-            flexGrow: 1,
-            maxWidth: {
-              xs: '100%',
-            },
-          }}
+          className='dialog__window-content'
         >
           <Grid
             container
-            sx={{
-              minWidth: {
-                xs: '100%',
-                sm: '400px',
-                md: '500px',
-              },
-            }}
+            className='dialog__window-list'
           >
             <Grid item xs={12}>
               <Demo>
@@ -121,9 +98,7 @@ export default function DialogWindow({ open, handleClose }) {
           </Grid>
           <Typography
             paragraph
-            style={{
-              textAlign: 'right',
-            }}
+            className='dialog__window-total'
           >
             Загальна сума: {getOrdersSum() + ' $'}
           </Typography>
@@ -134,7 +109,7 @@ export default function DialogWindow({ open, handleClose }) {
             >
               Стіл не вибрано!
             </Typography>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <FormControl className='dialog__window-form'>
               <InputLabel id="demo-simple-select-helper-label">
                 Стіл №
               </InputLabel>

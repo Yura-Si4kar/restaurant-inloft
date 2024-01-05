@@ -53,6 +53,12 @@ export default function reducer(state = initialValue, { type, payload }) {
       return { ...state, sales: payload };
     case SET_PAGES_LIMIT:
       return { ...state, pagesLimit: payload };
+    case SET_SEARCH_VALUE:
+      return { ...state, search: payload };
+    case SET_CURRENT_PAGE:
+      return { ...state, page: payload };
+    case SET_TOTAL_PAGES:
+      return { ...state, total: payload };
     case ADD_MENU_ITEM_TO_ORDER_LIST:
       return addMenuItem(state, payload);
     case CHANGE_ELEMENT_RATING:
@@ -77,12 +83,6 @@ export default function reducer(state = initialValue, { type, payload }) {
       return removeTable(state, payload);
     case DELETE_EMPLOYEE:
       return removeWorker(state, payload);
-    case SET_SEARCH_VALUE:
-      return { ...state, search: payload };
-    case SET_CURRENT_PAGE:
-      return { ...state, page: payload };
-    case SET_TOTAL_PAGES:
-      return { ...state, total: payload };
 
     default:
       return state;

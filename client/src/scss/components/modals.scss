@@ -1,0 +1,101 @@
+// CheckWithdrawalWindow
+
+.dialog-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialog__content {
+  width: 30vw;
+  
+  &-details {
+    display: flex;
+    justify-content: space-between;
+  }  
+}
+
+.dialog-waiter {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.payment-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.payment-amount {
+  width: 41%;
+}
+
+.dashed-line {
+  border-bottom: 3px dashed rgb(212, 212, 212);
+  width: 44%;
+}
+
+.total-amount {
+  width: 15%;
+  text-align: right;
+}
+
+.non-fiscal-message {
+  text-align: center;
+}
+
+// DialogWindow
+
+.dialog__window {
+  position: fixed;
+  bottom: 50px;
+  right: 28px;
+  min-width: 320px;
+  
+  @media (min-width: 577px) {
+    min-width: 375px;
+  }
+
+  @media (min-width: 769px) {
+    min-width: 100%;
+  }
+
+  &-title {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  &-icon {
+    cursor: pointer;
+  }
+  
+  &-content {
+    flex-grow: 1;
+    max-width: 100%;
+  }
+
+  &-list {
+    min-width: 100%;
+
+    @media (min-width: 600px) {
+        min-width: 400px;
+    }
+    @media (min-width: 960px) {
+        min-width: 500px;
+    }
+  }
+
+  &-total {
+    text-align: right;
+  }
+
+  &-form {
+    margin: 16px;
+    min-width: 120px !important;
+  }
+}
+
+// PersonnelDialogForm, TableDialogForm
+
+.modal-form {
+    margin-bottom: 16px !important;
+}

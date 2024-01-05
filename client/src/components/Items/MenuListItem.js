@@ -21,7 +21,6 @@ import {
   addMenuItems,
   changeItemRating,
 } from '../../store/actions/servicesActions';
-import useStyles from '../../hooks/useStyles';
 import { ExpandMore } from '../../utils/customStyledElement';
 
 export default function MenuListItem({ item }) {
@@ -43,12 +42,10 @@ export default function MenuListItem({ item }) {
     dispatch(addMenuItems({ ...item, numbers: count }));
   };
 
-  const classes = useStyles();
-
   return (
     <>
-      <div className={`dishes-list-box ${classes.root}`}>
-        <Card className="dishes-list-item" sx={{ width: '100%' }}>
+      <div className={`menu__item-container`}>
+        <Card className="menu__item">
           <CardHeader></CardHeader>
           <CardMedia
             component="img"
@@ -65,7 +62,7 @@ export default function MenuListItem({ item }) {
             <Typography variant="p" color="yellowgreen">
               Ціна: {item.price} $
             </Typography>
-            <Typography variant="span" className='d-flex align-items-center'>
+            <Typography variant="span" className='menu__item-rating'>
               <Rating
                 name="simple-controlled"
                 value={rating}
@@ -74,7 +71,7 @@ export default function MenuListItem({ item }) {
                   changeRating(newValue);
                 }}
               />
-              <Typography className='mx-2' variant='span'>{ Math.floor(rating * 10) / 10 }</Typography>
+              <Typography variant='span'>{ Math.floor(rating * 10) / 10 }</Typography>
             </Typography>
             <ExpandMore
               expand={expanded}
@@ -92,16 +89,13 @@ export default function MenuListItem({ item }) {
                 <Box style={{ marginBottom: 20 }}>
                   <Typography variant="span">Кількість:</Typography>
                   <Badge
-                    style={{ left: 20 }}
+                    className='menu__item-badge'
                     color="secondary"
                     badgeContent={count}
                   ></Badge>
                 </Box>
                 <Box
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                  }}
+                  className='menu__item-box'
                 >
                   <ButtonGroup>
                     <Button

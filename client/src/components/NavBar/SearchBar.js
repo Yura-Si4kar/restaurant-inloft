@@ -24,6 +24,7 @@ export function SearchBar() {
         placeholder="Search…"
         inputProps={{ 'aria-label': 'search' }}
         onInput={(e) => setInputString(e)}
+        className='navbar__search'
       />
     </Search>
   );

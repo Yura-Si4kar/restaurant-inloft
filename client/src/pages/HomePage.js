@@ -33,15 +33,10 @@ export default function HomePage() {
 
   return (
     <>
-      <Container maxWidth="1300px">
-        <div style={{paddingBottom: '20px'}}>
+      <Container maxWidth='1300px'>
+        <div className='home-block'>
           <Box
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              margin: '0 auto',
-            }}
+            className='home-box'
           >
             {list.map((item) => (
               <MenuListItem key={item._id} item={item} />

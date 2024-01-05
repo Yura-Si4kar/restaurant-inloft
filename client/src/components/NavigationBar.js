@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
-import useStyles from '../hooks/useStyles';
 import { MobileMenu } from './NavBar/MobileMenu';
 import { DesktopMenu } from './NavBar/DesktopMenu';
 import { SearchBar } from './NavBar/SearchBar';
@@ -22,7 +21,6 @@ import SettingMenu from './NavBar/SettingMenu';
 export default function NavigationBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const classes = useStyles();
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [openPersonnel, setOpenPersonnel] = useState(false);
@@ -40,7 +38,7 @@ export default function NavigationBar() {
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
   return (
-    <AppBar position="static" className={classes.navBar}>
+    <AppBar position="static" className='navbar'>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <MobileMenu
@@ -50,15 +48,11 @@ export default function NavigationBar() {
           />
           <DesktopMenu
             anchorEl={anchorEl}
-            classes={classes}
             handleOpen={handleClick}
             handleClose={handleClose}
           />
           <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
+            className='navbar-box'
           >
             {pathname === CATEGORIES_ROUTE ||
               pathname === TABLES_ROUTE ||

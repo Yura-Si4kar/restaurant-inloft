@@ -7,24 +7,7 @@ export default function ModalButton({ modalOpen, children }) {
     <Button
       onClick={modalOpen}
       variant="contained"
-      sx={{
-        backgroundColor: '#121212',
-        fontSize: {
-          xs: 24,
-          sm: 16,
-        },
-        padding: 0,
-        marginLeft: {
-          xs: 3,
-        },
-        width: {
-          xs: 30,
-          sm: 120,
-        },
-        color: {
-          xs: 'red',
-        },
-      }}
+      className='navbar__modals'
     >
       {smallScreen ? '+' : children}
     </Button>

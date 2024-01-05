@@ -1,0 +1,106 @@
+// MenuListItem
+.menu__item-container {
+  width: 25%;
+  padding: 10px;
+  display: flex;
+  align-items: stretch;
+  
+  @each $breakpoint, $width in $root-width {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      width: $width;
+    }
+  }
+}
+
+.menu__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
+.menu__item img {
+  border-radius: 15px;
+  max-width: 100%;
+}
+
+.menu__item-rating {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.menu__item-badge {
+    left: 20px;
+}
+
+.menu__item-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+// Order Item
+
+.order__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap !important;
+    padding: 0 10px;
+}
+
+.order__item-buttons {
+    display: flex;
+    flex-direction: column-reverse;
+
+    @media (min-width: 600px) {
+        flex-direction: row;
+    }
+}
+
+.order__item-button {
+    border: 1px solid rgba(144, 202, 249, 0.5) !important;
+    border-radius: 4px !important;
+}
+
+// Personnel Item
+
+.personnel__item {
+  position: relative;
+
+  &-delete {
+    position: absolute !important;
+    top: 0;
+    right: -10px;
+    color: blue;
+    font-size: 24px !important;
+    padding: 0 !important;
+  }
+
+  &-action {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+  }
+}
+
+// Table Item
+.table__item {
+  position: relative;
+
+  &-delete {
+    position: absolute !important;
+    top: 0;
+    right: -10px;
+    color: blue;
+    font-size: 24px !important;
+    padding: 0 !important;
+  }
+
+  &-action {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+  }
+}

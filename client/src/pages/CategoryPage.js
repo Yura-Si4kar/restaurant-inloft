@@ -32,20 +32,16 @@ export default function CategoryPage() {
 
   return (
     <>
-      <Container maxWidth="xl" style={{paddingBottom: '20px'}}>
+      <Container maxWidth="xl" className='category-container'>
         <Box>
           <Typography
             variant="h1"
-            style={{
-              fontWeight: 700,
-              fontSize: '25px',
-              textAlign: 'center',
-            }}
+            className='category-title'
           >
             {params.item.toLocaleUpperCase()}
           </Typography>
         </Box>
-        <div className="dishes-list">
+        <div className="category-list">
           {list.map((item) => (
             <MenuListItem key={item._id} item={item} />
           ))}

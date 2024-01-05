@@ -3,13 +3,11 @@ import { Bar } from 'react-chartjs-2';
 import { Grid, Typography, useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectTablesList } from '../../store/selectors/selectors';
-import useStyles from '../../hooks/useStyles';
 import { createBackgroundsColor } from '../../utils/hexColorGenerator';
 import { generateChartConfig } from '../../utils/chartUtils';
 
 export default function SalesAtTables({ sales }) {
   const labels = useSelector(selectTablesList).map((item) => item.name);
-  const classes = useStyles();
   const smallScreen = useMediaQuery('(max-width:600px)');
 
   const getDataSales = () => {
@@ -46,15 +44,15 @@ export default function SalesAtTables({ sales }) {
   );
 
   return (
-    <Grid item xs={12} className={classes.chartContainer}>
+    <Grid item xs={12} className='chart-container'>
       <Typography
         variant={smallScreen ? 'h5' : 'h4'}
-        className={classes.chartTitle}
+         className='chart-title'
         sx={{ textAlign: { xs: 'center' } }}
       >
         Дохід від столиків
       </Typography>
-      <Bar options={options} data={data} style={{ maxWidth: '100%' }} />
+      <Bar options={options} data={data} className='chart-bar' />
     </Grid>
   );
 }

@@ -20,21 +20,12 @@ export function MobileMenu({
         noWrap
         component="a"
         href="/"
-        style={{ color: 'red' }}
-        sx={{
-          mr: 2,
-          display: { xs: 'none', md: 'flex' },
-          fontFamily: 'Inter',
-          fontWeight: 700,
-          letterSpacing: '.1rem',
-          color: 'inherit',
-          textDecoration: 'none',
-        }}
+        className='navbar__logo-main'
       >
         <Icon path={mdiFood} title="logo" size={2} horizontal color="red" />
         Loft
       </Typography>
-      <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+      <Box className='navbar__mobile'>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -59,19 +50,23 @@ export function MobileMenu({
           }}
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
-          sx={{
-            display: { xs: 'block', md: 'none' },
-          }}
+          className='navbar__mobile-list'
         >
           <MenuItem>
-            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              Restaurant Menu
+            <Link to="/" className='navbar__mobile-item' onClick={handleCloseNavMenu}>
+              Menu
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link to="/categories" className='navbar__mobile-item' onClick={handleCloseNavMenu}>
+              За категоріями
             </Link>
           </MenuItem>
           <MenuItem>
             <Link
               to="/tables"
-              style={{ textDecoration: 'none', color: 'inherit' }}
+              className='navbar__mobile-item'
+              onClick={handleCloseNavMenu}
             >
               Tables
             </Link>
@@ -79,7 +74,8 @@ export function MobileMenu({
           <MenuItem>
             <Link
               to="/personnels"
-              style={{ textDecoration: 'none', color: 'inherit' }}
+              className='navbar__mobile-item'
+              onClick={handleCloseNavMenu}
             >
               Personnel
             </Link>
@@ -87,7 +83,8 @@ export function MobileMenu({
           <MenuItem>
             <Link
               to="/statistics"
-              style={{ textDecoration: 'none', color: 'inherit' }}
+              className='navbar__mobile-item'
+              onClick={handleCloseNavMenu}
             >
               Statistics
             </Link>

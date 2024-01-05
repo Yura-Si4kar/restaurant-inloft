@@ -15,8 +15,8 @@ export default function PersonnelsPage() {
   }, [dispatch]);
 
   return (
-    <Container style={{ display: 'flex', flexWrap: 'wrap' }}>
-      <Grid container spacing={1} style={{ marginTop: 20 }}>
+    <Container className='personnels-container'>
+      <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
           {personnel.map((person) => (
             <PersonnelItem key={person._id} person={person} />
