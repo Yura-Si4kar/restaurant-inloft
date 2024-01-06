@@ -8,5 +8,9 @@
     & .MuiPaginationItem-page.Mui-selected {
         background-color: black; // колір активної сторінки
         color: white; // колір тексту активної сторінки
+
+        &:hover {
+            color: black;
+        }
     }
 }
