@@ -68,7 +68,9 @@ export default function Auth() {
   return (
     <Container className="auth-container">
       <Box className="auth-card">
-        <Typography variant='h4' className="auth-title">{isLogin ? 'Авторизація' : 'Реєстрація'}</Typography>
+        <Typography variant="h4" className="auth-title">
+          {isLogin ? 'Авторизація' : 'Реєстрація'}
+        </Typography>
         <form className="auth-form">
           <MyInput
             className="auth-input"
@@ -93,14 +95,19 @@ export default function Auth() {
             />
           )}
         </form>
-        {error && <Typography className="auth-alert" variant='paragraph'>{error}</Typography>}
+        {error && (
+          <Typography className="auth-alert" variant="paragraph">
+            {error}
+          </Typography>
+        )}
         <Box className="auth-links">
           {isLogin ? (
-            <Typography variant='span' className='auth-link'>
-              Немає аккаунта? <Link to={AUTHORIZATION_ROUTE}>Зареєструйся!</Link>
+            <Typography variant="span" className="auth-link">
+              Немає аккаунта?{' '}
+              <Link to={AUTHORIZATION_ROUTE}>Зареєструйся!</Link>
             </Typography>
           ) : (
-            <Typography variant='span' className='auth-link'>
+            <Typography variant="span" className="auth-link">
               Уже зареєстровані? <Link to={LOGIN_ROUTE}>Увійдіть!</Link>
             </Typography>
           )}
@@ -110,7 +117,7 @@ export default function Auth() {
           color="success"
           type="submit"
           onClick={handleSubmit}
-          className='auth-submit'
+          className="auth-submit"
         >
           {isLogin ? 'Увійти' : 'Реєстрація'}
         </MyButton>
