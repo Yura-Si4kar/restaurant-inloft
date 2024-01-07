@@ -20,6 +20,7 @@ export const getSession = () => {
 };
 
 export const endSession = () => {
+  console.log('End session');
   document.cookie.split('; ').forEach((cookie) => {
     document.cookie = cookie
       .replace(/^ +/, '')

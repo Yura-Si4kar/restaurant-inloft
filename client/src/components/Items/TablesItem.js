@@ -14,7 +14,6 @@ import {
   Select,
   Typography,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckWithdrawalWindow from '../Popup/CheckWithdrawalWindow';
 import pic from '../../img/table.jpg';
@@ -24,7 +23,7 @@ import {
   saveSalesDate,
 } from '../../store/actions/servicesActions';
 import { deleteTable } from '../../store/actions/tablesActions';
-import { ExpandMore } from '../../utils/customStyledElement';
+import ExpandMore from '../UI/ExpandMore/ExpandMore';
 
 export default function TablesItem({ table }) {
   const [expanded, setExpanded] = useState(false);
@@ -82,7 +81,7 @@ export default function TablesItem({ table }) {
   return (
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Card className='table__item'>
+        <Card className="table__item">
           <CardMedia
             component="img"
             height="200"
@@ -93,22 +92,18 @@ export default function TablesItem({ table }) {
             <Button
               onClick={deleteItem}
               variant="text"
-              className='table__item-delete'
+              className="table__item-delete"
             >
               &#8722;
             </Button>
             <Typography>{table.name}</Typography>
           </CardContent>
-          <CardActions disableSpacing>
+          <CardActions className="table__item-action">
             <Typography>Info</Typography>
             <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
+              expanded={expanded}
+              handleExpandClick={handleExpandClick}
+            />
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             {table.order.length > 0 ? (
@@ -138,7 +133,7 @@ export default function TablesItem({ table }) {
                   Замовлення:
                   {table.order.map((element) => (
                     <Typography
-                      className='table__item-action'
+                      className="table__item-action"
                       key={element._id}
                       paragraph
                     >
@@ -148,7 +143,7 @@ export default function TablesItem({ table }) {
                   ))}
                 </Box>
                 <Box>
-                  <Box style={{ marginBottom: 20 }}>
+                  <Box className="menu__item-block">
                     <Typography variant="span">
                       Сума:
                       {getFullPrice()} $
@@ -160,9 +155,7 @@ export default function TablesItem({ table }) {
                       Виберіть офіціанта
                     </Typography>
                   </Box>
-                  <Box
-                    className='table__item-action'
-                  >
+                  <Box className="table__item-action">
                     <Button variant="contained" onClick={handleClose}>
                       Видалити
                     </Button>

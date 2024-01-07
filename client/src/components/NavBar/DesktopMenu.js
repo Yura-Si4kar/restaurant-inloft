@@ -10,7 +10,7 @@ export const DesktopMenu = ({ anchorEl, handleOpen, handleClose }) => (
       noWrap
       component="a"
       href="/"
-      className='navbar__logo'
+      className="navbar__logo"
     >
       <Icon
         path={mdiFood}
@@ -18,15 +18,15 @@ export const DesktopMenu = ({ anchorEl, handleOpen, handleClose }) => (
         size={1.2}
         horizontal
         color="red"
-        className='navbar__logo-icon'
+        className="navbar__logo-icon"
       />
       Loft
     </Typography>
-    <Box className='navbar__submenu'>
+    <Box className="navbar__submenu">
       <Button
         id="basic-button"
         onClick={handleOpen}
-        className='navbar__submenu-button'
+        className="navbar__submenu-button"
       >
         Restaurant Menu
       </Button>
@@ -40,37 +40,28 @@ export const DesktopMenu = ({ anchorEl, handleOpen, handleClose }) => (
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link className='navbar__submenu-items' to="/foods">
+          <Link className="navbar__submenu-items" to="/foods">
             Меню
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <Link className='navbar__submenu-items' to="/categories">
+          <Link className="navbar__submenu-items" to="/categories">
             За категоріями
           </Link>
         </MenuItem>
       </Menu>
-      <Button
-        onClick={handleClose}
-        className='navbar__menu-buttons'
-      >
-        <Link className='navbar__submenu-items' to="/tables">
+      <Button onClick={handleClose} className="navbar__menu-buttons">
+        <Link className="navbar__submenu-items" to="/tables">
           Tables
         </Link>
       </Button>
-      <Button
-        onClick={handleClose}
-        className='navbar__menu-buttons'
-      >
-        <Link className='navbar__submenu-items' to="/personnels">
+      <Button onClick={handleClose} className="navbar__menu-buttons">
+        <Link className="navbar__submenu-items" to="/personnels">
           Personnel
         </Link>
       </Button>
-      <Button
-        onClick={handleClose}
-        className='navbar__menu-buttons'
-      >
-        <Link className='navbar__submenu-items' to="/statistics">
+      <Button onClick={handleClose} className="navbar__menu-buttons">
+        <Link className="navbar__submenu-items" to="/statistics">
           Statistics
         </Link>
       </Button>

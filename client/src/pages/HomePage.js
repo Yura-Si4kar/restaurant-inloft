@@ -33,16 +33,16 @@ export default function HomePage() {
 
   return (
     <>
-      <Container maxWidth='1300px'>
-        <div className='home-block'>
-          <Box
-            className='home-box'
-          >
+      <Container maxWidth="1300px">
+        <div className="home-block">
+          <Box className="home-box">
             {list.map((item) => (
               <MenuListItem key={item._id} item={item} />
             ))}
           </Box>
-          {list.length === 0 || <PagePagination pages={total} onPageChange={handlePageChange} />}
+          {list.length === 0 || (
+            <PagePagination pages={total} onPageChange={handlePageChange} />
+          )}
         </div>
       </Container>
       <OrderPopupBtn />

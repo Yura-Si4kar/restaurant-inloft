@@ -23,7 +23,7 @@ export default function CategoryPage() {
   const total = useSelector(selectTotalPages);
 
   const handlePageChange = (newPage) => {
-        setPage(newPage);
+    setPage(newPage);
   };
 
   useEffect(() => {
@@ -32,12 +32,9 @@ export default function CategoryPage() {
 
   return (
     <>
-      <Container maxWidth="xl" className='category-container'>
+      <Container maxWidth="xl" className="category-container">
         <Box>
-          <Typography
-            variant="h1"
-            className='category-title'
-          >
+          <Typography variant="h1" className="category-title">
             {params.item.toLocaleUpperCase()}
           </Typography>
         </Box>
@@ -46,7 +43,9 @@ export default function CategoryPage() {
             <MenuListItem key={item._id} item={item} />
           ))}
         </div>
-        {list.length === 0 || <PagePagination pages={total} onPageChange={handlePageChange} />}
+        {list.length === 0 || (
+          <PagePagination pages={total} onPageChange={handlePageChange} />
+        )}
         <OrderPopupBtn />
       </Container>
     </>

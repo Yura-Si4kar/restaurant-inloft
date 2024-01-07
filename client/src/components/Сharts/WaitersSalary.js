@@ -42,14 +42,11 @@ export default function WaitersSalary({ sales }) {
   );
 
   return (
-    <Grid xs={12} sm={6} item className='chart-container'>
-      <Typography
-        variant={smallScreen ? 'h5' : 'h4'}
-        className='chart-title'
-      >
+    <Grid xs={12} sm={6} item className="chart-container">
+      <Typography variant={smallScreen ? 'h5' : 'h4'} className="chart-title">
         Активність працівників
       </Typography>
-      <Doughnut data={data} className='chart-pie' />
+      <Doughnut data={data} className="chart-pie" />
     </Grid>
   );
 }

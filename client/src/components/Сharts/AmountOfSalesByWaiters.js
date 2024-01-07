@@ -38,14 +38,11 @@ export default function AmountOfSalesByWaiters({ sales }) {
   );
 
   return (
-    <Grid item xs={12} sm={6} className='chart-container'>
-      <Typography
-        variant={smallScreen ? 'h5' : 'h4'}
-        className='chart-title'
-      >
+    <Grid item xs={12} sm={6} className="chart-container">
+      <Typography variant={smallScreen ? 'h5' : 'h4'} className="chart-title">
         Дохід від офіціантів
       </Typography>
-      <Pie data={data} className='chart-pie' />
+      <Pie data={data} className="chart-pie" />
     </Grid>
   );
 }

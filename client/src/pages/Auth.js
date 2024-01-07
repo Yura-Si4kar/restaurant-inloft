@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Alert, Card, Container, Form, Row } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AUTHORIZATION_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from '../config/consts';
 import { createUser, signInUser } from '../firebase/firebase';
@@ -8,6 +7,7 @@ import MyInput from '../components/UI/MyInput/MyInput';
 import MyButton from '../components/UI/MyButton/MyButton';
 import { useDispatch } from 'react-redux';
 import { setIsAuth, setUser } from '../store/actions/servicesActions';
+import { Box, Container, Typography } from '@mui/material';
 
 export default function Auth() {
   const location = useLocation();
@@ -19,7 +19,14 @@ export default function Auth() {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [error, setError] = useState('');
 
-  const submit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setError('Будь ласка, заповніть всі поля.');
+      return;
+    }
+
     if (isLogin) {
       try {
         const data = await signInUser(email, password);
@@ -60,10 +67,9 @@ export default function Auth() {
 
   return (
     <Container className="auth-container">
-      <Card className="auth-card">
-        {error && <Alert variant="danger">{error}</Alert>}
-        <h2 className="auth-title">{isLogin ? 'Авторизація' : 'Реєстрація'}</h2>
-        <Form className="auth-form">
+      <Box className="auth-card">
+        <Typography variant='h4' className="auth-title">{isLogin ? 'Авторизація' : 'Реєстрація'}</Typography>
+        <form className="auth-form">
           <MyInput
             className="auth-input"
             placeholder="Введіть ваш email"
@@ -86,27 +92,29 @@ export default function Auth() {
               type="password"
             />
           )}
-        </Form>
-        <Row className="auth-links">
+        </form>
+        {error && <Typography className="auth-alert" variant='paragraph'>{error}</Typography>}
+        <Box className="auth-links">
           {isLogin ? (
-            <Form.Text className='auth-link'>
+            <Typography variant='span' className='auth-link'>
               Немає аккаунта? <Link to={AUTHORIZATION_ROUTE}>Зареєструйся!</Link>
-            </Form.Text>
+            </Typography>
           ) : (
-            <Form.Text className='auth-link'>
+            <Typography variant='span' className='auth-link'>
               Уже зареєстровані? <Link to={LOGIN_ROUTE}>Увійдіть!</Link>
-            </Form.Text>
+            </Typography>
           )}
-          <MyButton
-            variant="contained"
-            color="success"
-            type="submit"
-            onClick={submit}
-          >
-            {isLogin ? 'Увійти' : 'Реєстрація'}
-          </MyButton>
-        </Row>
-      </Card>
+        </Box>
+        <MyButton
+          variant="contained"
+          color="success"
+          type="submit"
+          onClick={handleSubmit}
+          className='auth-submit'
+        >
+          {isLogin ? 'Увійти' : 'Реєстрація'}
+        </MyButton>
+      </Box>
     </Container>
   );
 }

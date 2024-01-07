@@ -15,7 +15,7 @@ export default function PersonnelsPage() {
   }, [dispatch]);
 
   return (
-    <Container className='personnels-container'>
+    <Container className="personnels-container">
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
           {personnel.map((person) => (

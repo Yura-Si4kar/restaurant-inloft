@@ -11,10 +11,9 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { ExpandMore } from '@mui/icons-material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useDispatch } from 'react-redux';
 import { fireAnEmployee } from '../../store/actions/personnelsActions';
+import ExpandMore from '../UI/ExpandMore/ExpandMore';
 
 export default function PersonnelItem({ person }) {
   const dispatch = useDispatch();
@@ -32,34 +31,24 @@ export default function PersonnelItem({ person }) {
   return (
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Paper className='personnel__item'>
-          <CardMedia
-            component="img"
-            image={pic}
-            alt={`emploee`}
-          />
+        <Paper className="personnel__item">
+          <CardMedia component="img" image={pic} alt={`emploee`} />
           <CardContent>
             <Button
               onClick={deleteWorkerCard}
               variant="text"
-              className='personnel__item-delete'
+              className="personnel__item-delete"
             >
               &#8722;
             </Button>
             <Typography>Ім'я: {person.name}</Typography>
           </CardContent>
-          <CardActions
-            className='personnel__item-action'
-            disableSpacing
-          >
+          <CardActions className="personnel__item-action" disableSpacing>
             <Typography>Детальна інформація</Typography>
             <ExpandMore
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
+              expanded={expanded}
+              handleExpandClick={handleExpandClick}
+            />
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>

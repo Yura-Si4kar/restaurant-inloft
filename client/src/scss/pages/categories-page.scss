@@ -1,22 +1,22 @@
 .categories-container {
-    padding-top: 30px;
+  padding-top: 30px;
 }
 
 .categories-link {
-    width: 100%;
-    text-decoration: none;
+  width: 100%;
+  text-decoration: none;
 }
 
 .categories-item {
-    height: 150px;
-    background-color: #121212;
-    border-radius: 15px;
+  height: 150px;
+  background-color: var(--main);
+  border-radius: 15px;
 
-    @media (min-width: 600px) {
-        height: 150px;
-    }
+  @media (min-width: 600px) {
+    height: 150px;
+  }
 }
 
 .categories-text {
-    color: red;
+  color: var(--red);
 }

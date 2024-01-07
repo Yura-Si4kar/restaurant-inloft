@@ -19,17 +19,17 @@ export default function OrderPopupBtn() {
   return (
     <>
       {ordersList.length > 0 && (
-          <Button
-            onClick={handleClickOpen}
-            variant="contained"
-            className='order__popup-btn'
-          >
-            Замовлення ({ordersList.length})
-          </Button>
+        <Button
+          onClick={handleClickOpen}
+          variant="contained"
+          className="order__popup-btn"
+        >
+          Замовлення ({ordersList.length})
+        </Button>
       )}
       {ordersList.length === 0 || (
         <DialogWindow open={open} handleClose={handleClose} />
       )}
     </>
   );
-};
+}

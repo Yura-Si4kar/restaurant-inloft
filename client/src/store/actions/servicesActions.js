@@ -73,22 +73,23 @@ export const setTotal = createAction(SET_TOTAL_PAGES);
 export const SET_PAGES_LIMIT = 'SET_PAGES_LIMIT';
 export const setPagesLimit = createAction(SET_PAGES_LIMIT);
 
-export const getMenuList = (params, page, limit, search) => (dispatch, getState) => {
-  dispatch(setLoading(true));
-  getFetchListByCategories(params, page, limit, search)
-    .then((data) => {
-      dispatch(setMenuList(data.collections));
-      dispatch(setTotal(data.total));
-      dispatch(setError(false))
-    })
-    .catch((error) => {
-      console.error(error);
-      dispatch(setError(true))
-    })
-    .finally(() => {
-      dispatch(setLoading(false));
-    });
-};
+export const getMenuList =
+  (params, page, limit, search) => (dispatch, getState) => {
+    dispatch(setLoading(true));
+    getFetchListByCategories(params, page, limit, search)
+      .then((data) => {
+        dispatch(setMenuList(data.collections));
+        dispatch(setTotal(data.total));
+        dispatch(setError(false));
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(setError(true));
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
+  };
 
 export const getOrderList = () => async (dispatch) => {
   dispatch(setLoading(true));

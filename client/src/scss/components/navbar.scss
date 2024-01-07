@@ -1,119 +1,119 @@
 .navbar {
-    position: 'relative';
-    background-color:#121212 !important;
+  position: 'relative';
+  background-color: var(--main) !important;
+  display: flex;
+
+  &-box {
+    display: flex;
+    align-items: center;
+  }
+
+  // Desktop Menu
+
+  &__logo {
+    padding-right: 1px;
+    flex-grow: 1;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    color: var(--red);
+    text-decoration: none;
     display: flex;
 
-    &-box {
-        display: flex;
-        align-items: center;
+    @media (min-width: 900px) {
+      display: none;
     }
 
-    // Desktop Menu
+    &-icon {
+      margin-right: 5px;
+    }
+  }
 
-    &__logo {
-        padding-right: 1px;
-        flex-grow: 1;
-        font-weight: 700;
-        letter-spacing: .1rem;
-        color: red;
-        text-decoration: none;
-        display: flex;
+  &__submenu {
+    flex-grow: 1;
+    display: none;
 
-        @media (min-width: 900px) {
-            display: none;
-        }
-
-        &-icon {
-            margin-right: 5px;
-        }
+    @media (min-width: 900px) {
+      display: flex;
     }
 
-    &__submenu {
-        flex-grow: 1;
+    &-button {
+      color: var(--white) !important;
+    }
+
+    &-items {
+      color: var(--white);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__menu-buttons {
+    margin: 0 16px;
+  }
+
+  // Mobile Menu
+
+  &__logo-main {
+    margin-right: 32px !important;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    color: var(--red);
+    text-decoration: none;
+    display: none;
+
+    @media (min-width: 900px) {
+      display: flex;
+    }
+  }
+
+  &__mobile {
+    flex-grow: 1;
+    display: flex;
+
+    @media (min-width: 900px) {
+      display: none;
+    }
+
+    &-list {
+      display: block;
+
+      @media (min-width: 900px) {
         display: none;
-
-        @media (min-width: 900px) {
-            display: flex;
-        }
-
-        &-button {
-            color: white !important;
-        }
-
-        &-items {
-            color: white;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
+      }
     }
 
-    &__menu-buttons {
-        margin: 0 16px;
+    &-item {
+      text-decoration: none;
+      color: inherit;
     }
+  }
 
-    // Mobile Menu
+  // Modal Buttons
 
-    &__logo-main {
-        margin-right: 32px !important;
-        font-weight: 700;
-        letter-spacing: .1rem;
-        color: red;
-        text-decoration: none;
-        display: none;
+  &__modals {
+    background-color: var(--main) !important;
+    font-size: 24px;
+    padding: 0;
+    margin-left: 3px;
+    width: 30px;
+    color: var(--red) !important;
 
-        @media (min-width: 900px) {
-            display: flex;
-        }
+    @media (min-width: 600px) {
+      font-size: 16px;
+      width: 120px;
     }
+  }
 
-    &__mobile {
-        flex-grow: 1;
-        display: flex;
+  // Search Input
 
-        @media (min-width: 900px) {
-            display: none;
-        }
+  &__search {
+    width: 150px !important;
 
-        &-list {
-            display: block;
-            
-            @media (min-width: 900px) {
-                display: none;
-            }
-        }
-
-        &-item {
-            text-decoration: none;
-            color: inherit;
-        }
+    @media (min-width: 600px) {
+      width: auto !important;
     }
-
-    // Modal Buttons
-
-    &__modals {
-        background-color: #121212 !important;
-        font-size: 24px;
-        padding: 0;
-        margin-left: 3px;
-        width: 30px;
-        color: red !important;
-
-        @media (min-width: 600px) {
-            font-size: 16px;
-            width: 120px;
-        }
-    }
-
-    // Search Input
-
-    &__search {
-        width: 150px !important;
-
-        @media (min-width: 600px) {
-            width: auto !important;
-        }
-    }
+  }
 }

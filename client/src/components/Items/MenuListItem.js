@@ -16,12 +16,11 @@ import {
 import { useDispatch } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import {
   addMenuItems,
   changeItemRating,
 } from '../../store/actions/servicesActions';
-import { ExpandMore } from '../../utils/customStyledElement';
+import ExpandMore from '../UI/ExpandMore/ExpandMore';
 
 export default function MenuListItem({ item }) {
   const dispatch = useDispatch();
@@ -62,7 +61,7 @@ export default function MenuListItem({ item }) {
             <Typography variant="p" color="yellowgreen">
               Ціна: {item.price} $
             </Typography>
-            <Typography variant="span" className='menu__item-rating'>
+            <Typography variant="span" className="menu__item-rating">
               <Rating
                 name="simple-controlled"
                 value={rating}
@@ -71,32 +70,28 @@ export default function MenuListItem({ item }) {
                   changeRating(newValue);
                 }}
               />
-              <Typography variant='span'>{ Math.floor(rating * 10) / 10 }</Typography>
+              <Typography variant="span">
+                {Math.floor(rating * 10) / 10}
+              </Typography>
             </Typography>
             <ExpandMore
-              expand={expanded}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <ExpandMoreIcon />
-            </ExpandMore>
+              expanded={expanded}
+              handleExpandClick={handleExpandClick}
+            />
           </CardActions>
           <Collapse in={expanded} timeout="auto" unmountOnExit>
             <CardContent>
               {item.dsc && <Typography paragraph>Опис: {item.dsc}</Typography>}
               <Box>
-                <Box style={{ marginBottom: 20 }}>
+                <Box className="menu__item-block">
                   <Typography variant="span">Кількість:</Typography>
                   <Badge
-                    className='menu__item-badge'
+                    className="menu__item-badge"
                     color="secondary"
                     badgeContent={count}
                   ></Badge>
                 </Box>
-                <Box
-                  className='menu__item-box'
-                >
+                <Box className="menu__item-box">
                   <ButtonGroup>
                     <Button
                       aria-label="reduce"

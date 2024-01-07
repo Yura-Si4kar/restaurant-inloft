@@ -1,0 +1,117 @@
+.MuiBox-root .search {
+  overflow: hidden;
+}
+
+.search {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: var(--main);
+  border-radius: 60px;
+  transition: 0.5s;
+  box-shadow: 0 0 0 5px var(--main);
+
+  &.search-active {
+    width: 150px;
+
+    @media (min-width: 900px) {
+      width: 270px;
+    }
+  }
+}
+
+.search-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-color: var(--main);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 22;
+  cursor: pointer;
+}
+
+.search-icon::before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  transform: translate(-4px, -4px);
+}
+
+.search-icon::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 12px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  transform: translate(6px, 6px) rotate(315deg);
+}
+
+.search-input {
+  position: relative;
+  width: 300px;
+  height: 40px;
+  left: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+
+  & .MuiInputBase-root {
+    height: 100%;
+    font-size: 14px;
+
+    & .MuiOutlinedInput-notchedOutline {
+      border-color: transparent !important;
+    }
+  }
+}
+
+.search-field {
+  position: absolute !important;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0;
+}
+
+.search-clear {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  right: 15px;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 21;
+
+  &::before {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 17px;
+    background-color: var(--white);
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 2px;
+    height: 17px;
+    background-color: var(--white);
+    transform: rotate(315deg);
+  }
+}

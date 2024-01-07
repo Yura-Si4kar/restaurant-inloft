@@ -44,15 +44,15 @@ export default function SalesAtTables({ sales }) {
   );
 
   return (
-    <Grid item xs={12} className='chart-container'>
+    <Grid item xs={12} className="chart-container">
       <Typography
         variant={smallScreen ? 'h5' : 'h4'}
-         className='chart-title'
+        className="chart-title"
         sx={{ textAlign: { xs: 'center' } }}
       >
         Дохід від столиків
       </Typography>
-      <Bar options={options} data={data} className='chart-bar' />
+      <Bar options={options} data={data} className="chart-bar" />
     </Grid>
   );
 }

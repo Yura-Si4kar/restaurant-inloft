@@ -43,7 +43,7 @@ export default function OrderListItem({ item }) {
   return (
     <>
       <ListItem>
-        <Grid container spacing={2} className='order__item'>
+        <Grid container spacing={2} className="order__item">
           <Grid item xs={6} sm={6} md={6} lg={7}>
             <ListItemText primary={item.name} />
             <ListItemText primary={`${price.toFixed(2)} $`} />
@@ -53,28 +53,19 @@ export default function OrderListItem({ item }) {
               <Badge color="secondary" badgeContent={count} />
             </ListItemText>
           </Grid>
-          <Grid
-            item
-            xs={5}
-            sm={4}
-            md={4}
-            lg={4}
-            className='order__item'
-          >
-            <ButtonGroup
-              className='order__item-buttons'
-            >
+          <Grid item xs={5} sm={4} md={4} lg={4} className="order__item">
+            <ButtonGroup className="order__item-buttons">
               <Button
                 aria-label="reduce"
                 onClick={decrease}
-                className='order__item-button'
+                className="order__item-button"
               >
                 <RemoveIcon fontSize="small" />
               </Button>
               <Button
                 aria-label="increase"
                 onClick={increase}
-                className='order__item-button'
+                className="order__item-button"
               >
                 <AddIcon fontSize="small" />
               </Button>

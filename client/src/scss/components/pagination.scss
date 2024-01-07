@@ -1,16 +1,16 @@
 .pagination {
-    margin: 0 auto !important;
+  margin: 0 auto !important;
 
-    & .MuiPaginationItem-root {
-        color: black; // колір неактивних сторінок
+  & .MuiPaginationItem-root {
+    color: var(--black); // колір неактивних сторінок
+  }
+
+  & .MuiPaginationItem-page.Mui-selected {
+    background-color: var(--black); // колір активної сторінки
+    color: var(--white); // колір тексту активної сторінки
+
+    &:hover {
+      color: var(--black);
     }
-
-    & .MuiPaginationItem-page.Mui-selected {
-        background-color: black; // колір активної сторінки
-        color: white; // колір тексту активної сторінки
-
-        &:hover {
-            color: black;
-        }
-    }
+  }
 }

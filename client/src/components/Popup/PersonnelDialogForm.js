@@ -57,7 +57,7 @@ export default function PersonnelDialogForm({ open, handleClose }) {
       <DialogTitle>Заповніть поля</DialogTitle>
       <DialogContent>
         <form>
-          <FormControl fullWidth className='modal-form'>
+          <FormControl fullWidth className="modal-form">
             <TextField
               type="text"
               id="name"
@@ -66,7 +66,7 @@ export default function PersonnelDialogForm({ open, handleClose }) {
               onChange={getInput}
             />
           </FormControl>
-          <FormControl fullWidth className='modal-form'>
+          <FormControl fullWidth className="modal-form">
             <TextField
               type="text"
               id="position"
@@ -75,7 +75,7 @@ export default function PersonnelDialogForm({ open, handleClose }) {
               onChange={getInput}
             />
           </FormControl>
-          <FormControl fullWidth className='modal-form'>
+          <FormControl fullWidth className="modal-form">
             <TextField
               type="text"
               id="salary"

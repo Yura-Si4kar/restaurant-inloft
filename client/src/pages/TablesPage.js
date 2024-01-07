@@ -17,7 +17,7 @@ export default function TablesPage() {
   }, [dispatch]);
 
   return (
-    <Container className='tables-container'>
+    <Container className="tables-container">
       <Grid container spacing={1}>
         <Grid container item xs={12} spacing={3}>
           {tables.map((item) => (

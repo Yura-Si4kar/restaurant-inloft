@@ -7,11 +7,11 @@
 
 .dialog__content {
   width: 30vw;
-  
+
   &-details {
     display: flex;
     justify-content: space-between;
-  }  
+  }
 }
 
 .dialog-waiter {
@@ -30,7 +30,7 @@
 }
 
 .dashed-line {
-  border-bottom: 3px dashed rgb(212, 212, 212);
+  border-bottom: 3px dashed var(--dashed-line);
   width: 44%;
 }
 
@@ -50,7 +50,7 @@
   bottom: 50px;
   right: 28px;
   min-width: 320px;
-  
+
   @media (min-width: 577px) {
     min-width: 375px;
   }
@@ -63,11 +63,11 @@
     display: flex;
     justify-content: space-between;
   }
-  
+
   &-icon {
     cursor: pointer;
   }
-  
+
   &-content {
     flex-grow: 1;
     max-width: 100%;
@@ -77,10 +77,10 @@
     min-width: 100%;
 
     @media (min-width: 600px) {
-        min-width: 400px;
+      min-width: 400px;
     }
     @media (min-width: 960px) {
-        min-width: 500px;
+      min-width: 500px;
     }
   }
 
@@ -97,5 +97,5 @@
 // PersonnelDialogForm, TableDialogForm
 
 .modal-form {
-    margin-bottom: 16px !important;
+  margin-bottom: 16px !important;
 }

@@ -65,27 +65,14 @@ export default function DialogWindow({ open, handleClose }) {
   }
 
   return (
-    <Dialog
-      open={open}
-      className='dialog__window'
-    >
-      <DialogTitle
-        className='dialog__window-title'
-        id="draggable-dialog-title"
-      >
+    <Dialog open={open} className="dialog__window">
+      <DialogTitle className="dialog__window-title" id="draggable-dialog-title">
         <Typography variant="span">Замовлення</Typography>
-        <CloseIcon className='dialog__window-icon' onClick={handleClose} />
+        <CloseIcon className="dialog__window-icon" onClick={handleClose} />
       </DialogTitle>
-      <DialogContent
-        className='dialog__window-content'
-      >
-        <Box
-          className='dialog__window-content'
-        >
-          <Grid
-            container
-            className='dialog__window-list'
-          >
+      <DialogContent className="dialog__window-content">
+        <Box className="dialog__window-content">
+          <Grid container className="dialog__window-list">
             <Grid item xs={12}>
               <Demo>
                 <List>
@@ -96,10 +83,7 @@ export default function DialogWindow({ open, handleClose }) {
               </Demo>
             </Grid>
           </Grid>
-          <Typography
-            paragraph
-            className='dialog__window-total'
-          >
+          <Typography paragraph className="dialog__window-total">
             Загальна сума: {getOrdersSum() + ' $'}
           </Typography>
           <Box>
@@ -109,7 +93,7 @@ export default function DialogWindow({ open, handleClose }) {
             >
               Стіл не вибрано!
             </Typography>
-            <FormControl className='dialog__window-form'>
+            <FormControl className="dialog__window-form">
               <InputLabel id="demo-simple-select-helper-label">
                 Стіл №
               </InputLabel>

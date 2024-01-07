@@ -38,7 +38,7 @@ export default function NavigationBar() {
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
   return (
-    <AppBar position="static" className='navbar'>
+    <AppBar position="static" className="navbar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <MobileMenu
@@ -51,9 +51,7 @@ export default function NavigationBar() {
             handleOpen={handleClick}
             handleClose={handleClose}
           />
-          <Box
-            className='navbar-box'
-          >
+          <Box className="navbar-box">
             {pathname === CATEGORIES_ROUTE ||
               pathname === TABLES_ROUTE ||
               pathname === PERSONNELS_ROUTE ||
@@ -67,7 +65,7 @@ export default function NavigationBar() {
               </ModalButton>
             )}
           </Box>
-          <SettingMenu/>
+          <SettingMenu />
         </Toolbar>
         <TableDialogForm open={open} handleClose={modalClose} />
         <PersonnelDialogForm

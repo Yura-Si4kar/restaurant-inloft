@@ -20,12 +20,12 @@ export function MobileMenu({
         noWrap
         component="a"
         href="/"
-        className='navbar__logo-main'
+        className="navbar__logo-main"
       >
         <Icon path={mdiFood} title="logo" size={2} horizontal color="red" />
         Loft
       </Typography>
-      <Box className='navbar__mobile'>
+      <Box className="navbar__mobile">
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -50,22 +50,30 @@ export function MobileMenu({
           }}
           open={Boolean(anchorElNav)}
           onClose={handleCloseNavMenu}
-          className='navbar__mobile-list'
+          className="navbar__mobile-list"
         >
           <MenuItem>
-            <Link to="/" className='navbar__mobile-item' onClick={handleCloseNavMenu}>
+            <Link
+              to="/"
+              className="navbar__mobile-item"
+              onClick={handleCloseNavMenu}
+            >
               Menu
             </Link>
           </MenuItem>
           <MenuItem>
-            <Link to="/categories" className='navbar__mobile-item' onClick={handleCloseNavMenu}>
+            <Link
+              to="/categories"
+              className="navbar__mobile-item"
+              onClick={handleCloseNavMenu}
+            >
               За категоріями
             </Link>
           </MenuItem>
           <MenuItem>
             <Link
               to="/tables"
-              className='navbar__mobile-item'
+              className="navbar__mobile-item"
               onClick={handleCloseNavMenu}
             >
               Tables
@@ -74,7 +82,7 @@ export function MobileMenu({
           <MenuItem>
             <Link
               to="/personnels"
-              className='navbar__mobile-item'
+              className="navbar__mobile-item"
               onClick={handleCloseNavMenu}
             >
               Personnel
@@ -83,7 +91,7 @@ export function MobileMenu({
           <MenuItem>
             <Link
               to="/statistics"
-              className='navbar__mobile-item'
+              className="navbar__mobile-item"
               onClick={handleCloseNavMenu}
             >
               Statistics

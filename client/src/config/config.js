@@ -14,5 +14,5 @@ export const initialValue = {
   sales: [],
   search: '',
   pagesLimit: 12,
-  total: 1
+  total: 1,
 };
