@@ -3,9 +3,46 @@
 }
 
 .category-title {
-  font-weight: 700;
-  font-size: 25px;
+  font-weight: 500 !important;
+  font-size: 36px !important;
   text-align: center;
+  color: transparent;
+
+  animation: colorChange 5s infinite alternate; /* Змініть '5s' на час, який ви хочете, і 'alternate', якщо хочете анімацію в обидва напрямки. */
+
+  @media (min-width: 600px) {
+    font-weight: 600 !important;
+    font-size: 46px !important;
+  }
+
+  @media (min-width: 960px) {
+    font-weight: 700 !important;
+    font-size: 60px !important;
+  }
+
+  @media (min-width: 1280px) {
+    font-weight: 700 !important;
+    font-size: 72px !important;
+  }
+
+  /* Оголошення ключових кадрів для анімації зміни кольору тексту */
+  @keyframes colorChange {
+    0% {
+      color: yellow;
+    }
+    25% {
+      color: #ff9900;
+    }
+    50% {
+      color: #ff3366;
+    }
+    50% {
+      color: red;
+    }
+    100% {
+      color: brown;
+    }
+  }
 }
 
 .category-list {

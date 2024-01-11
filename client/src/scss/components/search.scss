@@ -4,12 +4,17 @@
 
 .search {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background-color: var(--main);
   border-radius: 60px;
   transition: 0.5s;
   box-shadow: 0 0 0 5px var(--main);
+
+  @media (min-width: 600px) {
+    width: 40px;
+    height: 40px;
+  }
 
   &.search-active {
     width: 150px;
@@ -23,9 +28,9 @@
 .search-icon {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 40px;
-  height: 40px;
+  right: 0;
+  width: 30px;
+  height: 30px;
   background-color: var(--main);
   border-radius: 50%;
   display: flex;
@@ -33,6 +38,11 @@
   align-items: center;
   z-index: 22;
   cursor: pointer;
+
+  @media (min-width: 600px) {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .search-icon::before {
@@ -58,12 +68,17 @@
 .search-input {
   position: relative;
   width: 300px;
-  height: 40px;
-  left: 40px;
+  height: 30px;
+  left: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 20;
+
+  @media (min-width: 600px) {
+    width: 40px;
+    height: 40px;
+  }
 
   & .MuiInputBase-root {
     height: 100%;
@@ -89,7 +104,7 @@
   transform: translateY(-50%);
   width: 17px;
   height: 17px;
-  right: 15px;
+  left: 15px;
   background-color: transparent;
   cursor: pointer;
   display: flex;

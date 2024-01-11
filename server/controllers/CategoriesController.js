@@ -69,52 +69,36 @@ class CategoriesController {
                 });
         }
     }
-    
-    async getOne(req, res, next) {
-        this.Model
-            .findById(req.params.id)
-            .then((doc) => {
-                res
-                    .status(200)
-                    .json(doc);
-            })
-            .catch((e) => {
-                next(ApiError.internal(e.message))
-            })
-    }
 
     async updateOne(req, res, next) {
-        const { rate } = req.body;
+        try {
+            const { rate } = req.body;
 
-        if (rate) {
-            try {
+            if (rate) {
                 const result = await this.Model.findById(req.params.id);
 
-                // Оновлюємо кількість голосів та суму рейтингів
+                if (!result) {
+                    return next(ApiError.notFound('Елемент не знайдено'));
+                }
+
                 result.count += 1;
                 result.totalRating += rate;
-
-                // Розраховуємо середній рейтинг
                 result.rate = result.totalRating / result.count;
 
-                // Зберігаємо оновлені дані
                 await result.save();
 
                 res.status(200).json(result);
-            } catch (error) {
-                next(ApiError.internal(error.message));
+            } else {
+                const result = await this.Model.findByIdAndUpdate(req.params.id, req.body);
+
+                if (!result) {
+                    return next(ApiError.notFound('Елемент не знайдено'));
+                }
+
+                res.status(200).json(result);
             }
-        } else {
-            this.Model
-                .findByIdAndUpdate(req.params.id, req.body)
-                .then((result) => {
-                    res
-                        .status(200)
-                        .json(result);
-                })
-                .catch(() => {
-                    next(ApiError.internal)
-                })     
+        } catch (error) {
+            next(ApiError.internal(error.message));
         }
     }
 }

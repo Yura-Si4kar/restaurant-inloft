@@ -90,10 +90,31 @@ export default function reducer(state = initialValue, { type, payload }) {
 }
 
 function addMenuItem(state, item) {
-  return {
-    ...state,
-    orders: [...state.orders, item],
-  };
+  const existingItem = state.orders.find((existing) => existing._id === item._id);
+
+  if (existingItem) {
+    // Якщо елемент уже існує, оновіть його numbers
+    const updatedOrders = state.orders.map((existing) => {
+      if (existing._id === item._id) {
+        return {
+          ...existing,
+          numbers: existing.numbers + item.numbers,
+        };
+      }
+      return existing;
+    });
+
+    return {
+      ...state,
+      orders: updatedOrders,
+    };
+  } else {
+    // Якщо елемент ще не існує, просто додайте його
+    return {
+      ...state,
+      orders: [...state.orders, item],
+    };
+  }
 }
 
 function changeRating(state, item) {

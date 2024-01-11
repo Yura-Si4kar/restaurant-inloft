@@ -7,10 +7,8 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader,
   CardMedia,
   Collapse,
-  Rating,
   Typography,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
@@ -18,20 +16,14 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import {
   addMenuItems,
-  changeItemRating,
 } from '../../store/actions/servicesActions';
 import ExpandMore from '../UI/ExpandMore/ExpandMore';
+import { ItemRating } from '../UI/ItemRating';
 
 export default function MenuListItem({ item }) {
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
-  const [rating, setRating] = useState(item.rate);
   const [count, setCount] = useState(1);
-
-  const changeRating = (newValue) => {
-    setRating(newValue);
-    dispatch(changeItemRating(item.type, item._id, newValue));
-  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -45,35 +37,22 @@ export default function MenuListItem({ item }) {
     <>
       <div className={`menu__item-container`}>
         <Card className="menu__item">
-          <CardHeader></CardHeader>
-          <CardMedia
-            component="img"
-            height="194"
-            image={item.img}
-            alt="Paella dish"
-          />
-          <CardContent>
-            <Typography variant="h6" color="text.secondary">
-              {item.name}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Typography variant="p" color="yellowgreen">
+            <CardMedia
+              component="img"
+              height="194"
+              image={item.img}
+              alt="Paella dish"
+            />
+            <CardContent>
+              <Typography variant="h6" color="text.secondary">
+                {item.name}
+              </Typography>
+            </CardContent>
+          <CardActions className='menu__item-actions'>
+            <Typography className='menu__item-price' variant="p" color="yellowgreen">
               Ціна: {item.price} $
             </Typography>
-            <Typography variant="span" className="menu__item-rating">
-              <Rating
-                name="simple-controlled"
-                value={rating}
-                precision={0.1}
-                onChange={(event, newValue) => {
-                  changeRating(newValue);
-                }}
-              />
-              <Typography variant="span">
-                {Math.floor(rating * 10) / 10}
-              </Typography>
-            </Typography>
+            <ItemRating item={item} nameOfClass={'menu__item-rating-element'} />
             <ExpandMore
               expanded={expanded}
               handleExpandClick={handleExpandClick}

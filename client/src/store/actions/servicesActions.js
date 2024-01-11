@@ -77,7 +77,7 @@ export const getMenuList =
   (params, page, limit, search) => (dispatch, getState) => {
     dispatch(setLoading(true));
     getFetchListByCategories(params, page, limit, search)
-      .then((data) => {
+    .then((data) => {
         dispatch(setMenuList(data.collections));
         dispatch(setTotal(data.total));
         dispatch(setError(false));

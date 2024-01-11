@@ -9,10 +9,25 @@ const saveData = (data) => {
   return localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 };
 
-export const saveItemsToLocalStorage = (items) => {
-  const orders = getItemsFromLocalStorage(STORAGE_KEY);
-  saveData([...orders, items]);
-};
+export function saveItemsToLocalStorage(items) {
+  const orders = getItemsFromLocalStorage();
+  const updatedList = mergeItems(orders, items);
+  
+  saveData(updatedList);
+}
+
+function mergeItems(orders, element) {
+  const mergedItems = [...orders];
+  const existingItemIndex = mergedItems.findIndex((item) => item._id === element._id);
+
+  if (existingItemIndex !== -1) {
+    mergedItems[existingItemIndex].numbers += element.numbers;
+  } else {
+    mergedItems.push(element);
+  }
+
+  return mergedItems;
+}
 
 export const deleteItemsFromLocalStorage = (id) => {
   const orders = getItemsFromLocalStorage(STORAGE_KEY);

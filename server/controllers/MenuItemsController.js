@@ -34,19 +34,6 @@ class MenuItemsController {
             })
     }
 
-    async getOne(req, res) {
-        this.Model
-            .findById(req.params.id)
-            .then((doc) => {
-                res
-                    .status(200)
-                    .json(doc);
-            })
-            .catch((e) => {
-                next(ApiError.internal(e.message))
-            })
-    }
-
     async updateOne(req, res) {
         this.Model
             .findByIdAndUpdate(req.params.id, req.body)
