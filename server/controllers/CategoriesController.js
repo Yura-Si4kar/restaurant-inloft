@@ -78,7 +78,7 @@ class CategoriesController {
                 const result = await this.Model.findById(req.params.id);
 
                 if (!result) {
-                    return next(ApiError.notFound('Елемент не знайдено'));
+                    return next(ApiError.notFound('Element not found'));
                 }
 
                 result.count += 1;
@@ -92,7 +92,7 @@ class CategoriesController {
                 const result = await this.Model.findByIdAndUpdate(req.params.id, req.body);
 
                 if (!result) {
-                    return next(ApiError.notFound('Елемент не знайдено'));
+                    return next(ApiError.notFound('Element not found'));
                 }
 
                 res.status(200).json(result);

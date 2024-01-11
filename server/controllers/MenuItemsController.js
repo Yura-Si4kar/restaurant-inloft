@@ -6,58 +6,71 @@ class MenuItemsController {
         this.Model = Models[category];
     }
     
-    async create(req, res) {
-        const bbqs = new this.Model(req.body);
-        bbqs
-            .save()
-            .then((result) => {
-                res
-                    .status(201)
-                    .json(result);
-            })
-            .catch((e) => {
-                next(ApiError.internal(e.message))
-            })  
+    async create(req, res, next) {
+        try {
+            const list = new this.Model(req.body);
+            const result = await list.save();
+
+            res.status(201).json(result);
+        } catch (error) {
+            next(ApiError.internal(error.message));
+        }
     }
 
     async getAll(req, res, next) {
-        this.Model
-            .find() // повертає вказівник на повернену колекцію документів - cursor(інкапсулюють в собі набори отриманих з БД об'єктів)
-            .sort({name: 1})
-            .then((bbqs) => {
-                res
-                    .status(200)
-                    .json(bbqs);
-            })
-            .catch((e) => {
-                next(ApiError.internal(e.message))
-            })
+        try {
+            const list = await this.Model.find().sort({ name: 1 });
+
+            if (!list || list.length === 0) {
+                return next(ApiError.notFound('Elements not found'));
+            }
+
+            res.status(200).json(list);
+        } catch (error) {
+            next(ApiError.internal(error.message));
+        }
     }
 
-    async updateOne(req, res) {
-        this.Model
-            .findByIdAndUpdate(req.params.id, req.body)
-            .then((result) => {
-                res
-                    .status(200)
-                    .json(result);
-            })
-            .catch(() => {
-                next(ApiError.internal)
-            })     
+    async getOne(req, res, next) {
+        try {
+            const doc = await this.Model.findById(req.params.id);
+
+            if (!doc) {
+                return next(ApiError.notFound('Element not found'));
+            }
+
+            res.status(200).json(doc);
+        } catch (error) {
+            next(ApiError.internal(error.message));
+        }
     }
 
-    async delete(req, res) {
-        this.Model
-            .findByIdAndDelete(req.params.id)
-            .then((result) => {
-                res
-                    .status(200)
-                    .json(result);
-            })
-            .catch((e) => {
-                next(ApiError.internal(e.message))
-            }) 
+    async updateOne(req, res, next) {
+        try {
+            const result = await this.Model.findByIdAndUpdate(req.params.id, req.body);
+
+            if (!result) {
+                return next(ApiError.notFound('Element not found'));
+            }
+
+            res.status(200).json(result);
+        } catch (error) {
+            next(ApiError.internal(error.message));
+        }
+    }
+
+    async delete(req, res, next) {
+        try {
+            const result = await this.Model.findByIdAndDelete(req.params.id);
+
+            if (!result) {
+                return next(ApiError.notFound('Element not found'));
+            }
+
+            res.status(200).json(result);
+        } catch (error) {
+            next(ApiError.internal(error.message));
+        }
     }
 }
 
