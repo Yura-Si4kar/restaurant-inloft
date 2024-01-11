@@ -5,6 +5,7 @@ export const initialValue = {
   isLoading: false,
   isAuth: true,
   error: false,
+  errorBody: {},
   user: {},
   list: [],
   orders: [],

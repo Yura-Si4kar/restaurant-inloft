@@ -15,6 +15,7 @@ import {
   SET_AUTH,
   SET_CURRENT_PAGE,
   SET_ERROR,
+  SET_ERROR_BODY,
   SET_LOADING,
   SET_MENU_LIST,
   SET_ORDER_LIST,
@@ -39,6 +40,8 @@ export default function reducer(state = initialValue, { type, payload }) {
       return { ...state, isAuth: payload };
     case SET_ERROR:
       return { ...state, error: payload };
+    case SET_ERROR_BODY:
+      return { ...state, errorBody: payload };
     case SET_USER:
       return { ...state, user: payload };
     case SET_TABLES_LIST:

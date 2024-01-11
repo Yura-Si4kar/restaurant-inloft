@@ -22,6 +22,9 @@ export const setIsAuth = createAction(SET_AUTH);
 export const SET_ERROR = 'SET_ERROR';
 export const setError = createAction(SET_ERROR);
 
+export const SET_ERROR_BODY = 'SET_ERROR_BODY';
+export const setErrorBody = createAction(SET_ERROR_BODY);
+
 export const SET_USER = 'SET_USER';
 export const setUser = createAction(SET_USER);
 
@@ -78,18 +81,20 @@ export const getMenuList =
     dispatch(setLoading(true));
     getFetchListByCategories(params, page, limit, search)
     .then((data) => {
-        dispatch(setMenuList(data.collections));
-        dispatch(setTotal(data.total));
-        dispatch(setError(false));
-      })
-      .catch((error) => {
-        console.error(error);
-        dispatch(setError(true));
-      })
-      .finally(() => {
-        dispatch(setLoading(false));
-      });
-  };
+      dispatch(setMenuList(data.collections));
+      dispatch(setTotal(data.total));
+      dispatch(setError(false));
+      dispatch(setErrorBody({}));
+    })
+    .catch((error) => {
+      console.error(error);
+      dispatch(setError(true));
+      dispatch(setErrorBody(error));
+    })
+    .finally(() => {
+      dispatch(setLoading(false));
+    });
+};
 
 export const getOrderList = () => async (dispatch) => {
   dispatch(setLoading(true));
@@ -97,8 +102,12 @@ export const getOrderList = () => async (dispatch) => {
   try {
     const orders = await getItemsFromLocalStorage();
     dispatch(setOrderList(orders));
+    dispatch(setError(false));
+    dispatch(setErrorBody({}));
   } catch (error) {
     console.error(error);
+    dispatch(setError(true));
+    dispatch(setErrorBody(error));
   }
 
   dispatch(setLoading(false));
@@ -110,8 +119,12 @@ export const addMenuItems = (value) => async (dispatch, getState) => {
 
   try {
     saveItemsToLocalStorage(value);
+    dispatch(setError(false));
+    dispatch(setErrorBody({}));
   } catch (error) {
     console.error(error);
+    dispatch(setError(true));
+    dispatch(setErrorBody(error));
   }
 
   dispatch(setLoading(false));
@@ -125,9 +138,13 @@ export const changeItemRating =
     setNewRatingToTheMenuItem(params, id, newItem)
       .then((data) => {
         dispatch(changeElementRating(data));
+        dispatch(setError(true));
+        dispatch(setErrorBody({}));
       })
       .catch((error) => {
         console.error(error);
+        dispatch(setError(true));
+        dispatch(setErrorBody({}));
       });
   };
 
@@ -137,8 +154,12 @@ export const clearStorage = () => async (dispatch, getState) => {
 
   try {
     clearLocalStorage();
+    dispatch(setError(false));
+    dispatch(setErrorBody({}));
   } catch (error) {
     console.error(error);
+    dispatch(setError(true));
+    dispatch(setErrorBody(error));
   }
 
   dispatch(setLoading(false));
@@ -152,8 +173,12 @@ export const overwriteOrderItem = (id, value) => async (dispatch, getState) => {
 
   try {
     updateItemsInLocalStorage(id, { ...order, numbers: value });
+    dispatch(setError(false));
+    dispatch(setErrorBody({}));
   } catch (error) {
     console.error(error);
+    dispatch(setError(true));
+    dispatch(setErrorBody(error));
   }
 
   dispatch(setLoading(false));
@@ -165,8 +190,12 @@ export const removeOrderElement = (id) => async (dispatch, getState) => {
 
   try {
     deleteItemsFromLocalStorage(id);
+    dispatch(setError(false));
+    dispatch(setErrorBody({}));
   } catch (error) {
     console.error(error);
+    dispatch(setError(true));
+    dispatch(setErrorBody(error));
   }
 
   dispatch(setLoading(false));
@@ -180,9 +209,13 @@ export const tieOrder = (order) => (dispatch, getState) => {
   setOrdersListToTable(table._id, table)
     .then((data) => {
       dispatch(tieTheOrderToTheTable(data));
+      dispatch(setError(false));
+      dispatch(setErrorBody({}));
     })
     .catch((error) => {
       console.error(error);
+      dispatch(setError(false));
+      dispatch(setErrorBody(error));
     })
     .finally(() => {
       dispatch(setLoading(false));
@@ -197,9 +230,13 @@ export const clearTableOrders = (id, order) => (dispatch, getState) => {
   setOrdersListToTable(id, newItem)
     .then(() => {
       dispatch(clearOrderListFromTheTable(id));
+      dispatch(setError(false));
+      dispatch(setErrorBody({}));
     })
     .catch((error) => {
       console.error(error);
+      dispatch(setError(true));
+      dispatch(setErrorBody(error));
     })
     .finally(() => {
       dispatch(setLoading(false));
@@ -211,9 +248,13 @@ export const saveSalesDate = (obj) => (dispatch, getState) => {
   addSalesData(obj)
     .then((data) => {
       dispatch(calculateTheExtractor(data));
+      dispatch(setError(false));
+      dispatch(setErrorBody({}));
     })
     .catch((error) => {
       console.error(error);
+      dispatch(setError(true));
+      dispatch(setErrorBody(error));
     })
     .finally(() => {
       dispatch(setLoading(false));
@@ -225,9 +266,13 @@ export const getSalesList = (params) => (dispatch, getState) => {
   getFetchListByCategories(params)
     .then((data) => {
       dispatch(setSalesList(data));
+      dispatch(setError(false));
+      dispatch(setErrorBody({}));
     })
     .catch((error) => {
       console.error(error);
+      dispatch(setError(false));
+      dispatch(setErrorBody(error));
     })
     .finally(() => {
       dispatch(setLoading(false));

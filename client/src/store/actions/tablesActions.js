@@ -8,6 +8,12 @@ import {
 export const SET_LOADING = 'SET_LOADING';
 export const setTableListLoading = createAction(SET_LOADING);
 
+export const SET_ERROR = 'SET_ERROR';
+export const setTablesError = createAction(SET_ERROR);
+
+export const SET_ERROR_BODY = 'SET_ERROR_BODY';
+export const setTablesErrorBody = createAction(SET_ERROR_BODY);
+
 export const SET_TABLES_LIST = 'SET_TABLES_LIST';
 export const setTablesList = createAction(SET_TABLES_LIST);
 
@@ -22,9 +28,13 @@ export const getTableList = (params) => (dispatch, getState) => {
   getFetchListByCategories(params)
     .then((data) => {
       dispatch(setTablesList(data));
+      dispatch(setTablesError(false));
+      dispatch(setTablesErrorBody({}));      
     })
     .catch((error) => {
       console.error(error);
+      dispatch(setTablesError(true));
+      dispatch(setTablesErrorBody(error));      
     })
     .finally(() => {
       dispatch(setTableListLoading(false));
@@ -36,9 +46,13 @@ export const addItem = (item) => (dispatch, getState) => {
   addTableToTheDataList(item)
     .then((data) => {
       dispatch(addTable(data));
+      dispatch(setTablesError(false));
+      dispatch(setTablesErrorBody({}));      
     })
     .catch((error) => {
       console.error(error);
+      dispatch(setTablesError(true));
+      dispatch(setTablesErrorBody(error));      
     })
     .finally(() => {
       dispatch(setTableListLoading(false));
@@ -50,9 +64,13 @@ export const deleteTable = (id) => (dispatch, getState) => {
   removeTableFromTheDataList(id)
     .then(() => {
       dispatch(deleteItem(id));
+      dispatch(setTablesError(false));
+      dispatch(setTablesErrorBody({}));      
     })
     .catch((error) => {
       console.error(error);
+      dispatch(setTablesError(true));
+      dispatch(setTablesErrorBody(error));      
     })
     .finally(() => {
       dispatch(setTableListLoading(false));

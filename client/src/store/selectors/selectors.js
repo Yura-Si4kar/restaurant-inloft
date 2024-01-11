@@ -10,6 +10,10 @@ export function selectIsError(state) {
   return state.error;
 }
 
+export function selectErrorBody(state) {
+  return state.errorBody;
+}
+
 export function selectUser(state) {
   return state.user;
 }

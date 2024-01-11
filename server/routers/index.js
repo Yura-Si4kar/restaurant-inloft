@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { categories, menuItems } = require('../config.js');
 const router = new Router();
-const CategoriesRouter = require('./CategoriesRouter.js');
+const CategoriesRouter = require('./categoriesRouter.js');
 const CategoriesController = require('../controllers/CategoriesController.js');
 const MenuItemsController = require('../controllers/MenuItemsController.js');
 const MenuItemsRouter = require('./MenuItemsRouter.js');

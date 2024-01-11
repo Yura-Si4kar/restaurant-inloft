@@ -1,14 +1,12 @@
 .error__page-backdrop {
   backdrop-filter: blur(5px);
+  z-index: 100 !important;
 }
 
 .error__page {
   color: var(--white);
-  z-index: 20;
+  z-index: 100 !important;
   border: 1px solid var(--red);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   height: 70vh;
   width: 90vw;
   display: flex;
@@ -18,10 +16,96 @@
   padding: 20px;
   border-radius: 15px;
 
+  &-close {
+    position: relative;
+    top: 5px;
+    right: -10px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      transform: rotate(-45deg);
+    }
+  
+    &::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      transform: rotate(45deg);
+    }
+  }
+
+
   @media (min-width: 600px) {
     height: 70vh;
     width: 60vw;
   }
+
+  &-title {
+    font-size: 50px !important;
+    font-weight: bold !important;
+    animation: mixColor 7s infinite alternate;
+    filter: drop-shadow(0px 0px 2px yellow);
+    color: red;
+    padding-bottom: 15px;
+    
+    @media (min-width: 768px) {
+      font-size: 60px !important;      
+      padding-bottom: 20px;
+    }
+  }
+  
+  &-text {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: transparent;
+    background-image: linear-gradient(to right, red,green, blue);
+    filter: drop-shadow(0px 0px 2px yellow);
+    background-clip: text;
+    -webkit-background-clip: text;
+    padding-bottom: 20px;
+    background-size: cover;
+
+    @media (min-width: 768px) {
+      font-size: 24px !important;      
+      padding-bottom: 20px;
+    }
+  }
+
+  @keyframes mixColor {
+      0%{
+        color: orange;
+      }
+      15%{
+        color: yellow;
+      }
+      30%{
+        color: green;
+      }
+      45%{
+        color: #03fff7;
+      }
+      60%{
+        color: blue;
+      }
+      75%{
+        color: rgb(151, 0, 153);
+      }
+      90%{
+        color: white;
+      }
+      100%{
+        color: red;
+      }
+    }
 }
 
 .loading-backdrop {
