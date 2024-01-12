@@ -1,11 +1,12 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const router = require('./routers');
-const errorHandler = require('./middlewares/ErrorHandlingMiddleware');
 const connectToDb = require('./db');
 const cors = require('cors');
+const router = require('./routers');
+const ErrorHandlingMiddleware = require('./middlewares/ErrorHandlingMiddleware');
 
-const PORT = 3001;
+const PORT = process.env.PORT || 8080;
 
 const app = express();
 app.use(cors({ origin: '*' }));
@@ -13,7 +14,7 @@ app.use(express.json());
 
 app.use('/', router);
 
-app.use(errorHandler);
+app.use(ErrorHandlingMiddleware);
     
 const start = async () => {
     try {

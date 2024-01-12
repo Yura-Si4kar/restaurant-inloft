@@ -18,6 +18,7 @@ class CategoriesController {
             delete Models.Personnels;
             delete Models.Tables;
             delete Models.Sales;
+            delete Models.Users;
             const promises = Object.values(Models).map(async (Model) => {
                 try {
                     const data = await Model.find().sort({ name: 1 });

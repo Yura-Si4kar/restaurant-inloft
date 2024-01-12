@@ -1,10 +1,13 @@
 const { Router } = require('express');
 const { categories, menuItems } = require('../config.js');
 const router = new Router();
+const UsersRouter = require('./UsersRouter.js');
 const CategoriesRouter = require('./categoriesRouter.js');
 const CategoriesController = require('../controllers/CategoriesController.js');
 const MenuItemsController = require('../controllers/MenuItemsController.js');
 const MenuItemsRouter = require('./MenuItemsRouter.js');
+
+router.use('/', UsersRouter);
 
 categories.forEach(category => {
     const controllerName = category.charAt(0).toUpperCase() + category.slice(1);

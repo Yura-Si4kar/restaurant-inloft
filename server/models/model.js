@@ -4,6 +4,11 @@ const { categories } = require('../config');
 
 const Schema = mongoose.Schema;
 
+const userSchema = new Schema({
+    email: {type: String, required: true},
+    password: {type: String, required: true},
+})
+
 const categoriesSchema = new Schema({
     type: {type: String, required: true},
     img: {type: String, required: true},
@@ -42,8 +47,9 @@ categories.forEach((category) => {
     Models[categoryName] = mongoose.model(category, categoriesSchema);
 })
 
+const Users = mongoose.model('users', userSchema);
 const Tables = mongoose.model('tables', tablesSchema);
 const Personnels= mongoose.model('personnels', personnelsSchema);
 const Sales= mongoose.model('sales', salesSchema);
 
-module.exports = {...Models, Tables, Personnels, Sales};
+module.exports = {...Models, Tables, Personnels, Sales, Users};
