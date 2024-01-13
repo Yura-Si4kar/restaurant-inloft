@@ -1,6 +1,6 @@
 import { $host, $hostAuth } from "."
 import { jwtDecode } from 'jwt-decode';
-import { startSession } from "../storages/cookie";
+import { getSession, startSession } from "../storages/cookie";
 
 export const registration = async (email, password) => {
     const { data } = await $host.post('/registration', { email, password });
@@ -15,7 +15,13 @@ export const authorization = async (email, password) => {
 }
 
 export const check = async () => {
-    const { data } = await $hostAuth.get('/auth');
-    startSession(data.token);
-    return jwtDecode(data.token);
+    const session = !!getSession().accessToken;
+
+    if (session) {
+        const { data } = await $hostAuth.get('/auth');
+        startSession(data.token);
+        return jwtDecode(data.token);
+    } else {
+        return null;
+    }
 }
