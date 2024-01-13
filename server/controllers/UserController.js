@@ -27,7 +27,9 @@ class UsersController {
             const user = new Users({ email, password: hashedPassword });
             user.save();
 
-            res.json('Реєстрація успішна');
+            // Генеруємо JWT-токен
+            const token = generateJWT(user._id, user.email);
+            res.json({ token });
         } catch (e) {
             console.error(e);
             next(ApiError.internal('Помилка реєстрації'));
