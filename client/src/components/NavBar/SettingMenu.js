@@ -18,7 +18,7 @@ import {
 import MyButton from '../UI/MyButton/MyButton';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_ROUTE } from '../../config/consts';
-import { endSession } from '../../firebase/session';
+import { endSession } from '../../storages/cookie';
 
 const limitElements = [4, 8, 12, 16, 20];
 

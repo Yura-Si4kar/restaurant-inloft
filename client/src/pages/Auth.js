@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AUTHORIZATION_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from '../config/consts';
-import { createUser, signInUser } from '../firebase/firebase';
-import { startSession } from '../firebase/session';
 import MyInput from '../components/UI/MyInput/MyInput';
 import MyButton from '../components/UI/MyButton/MyButton';
 import { useDispatch } from 'react-redux';
 import { setIsAuth, setUser } from '../store/actions/servicesActions';
 import { Box, Container, Typography } from '@mui/material';
+import { authorization, registration } from '../http/userApi';
 
 export default function Auth() {
   const location = useLocation();
@@ -21,6 +20,7 @@ export default function Auth() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let user;
 
     if (!email || !password) {
       setError('Будь ласка, заповніть всі поля.');
@@ -29,9 +29,8 @@ export default function Auth() {
 
     if (isLogin) {
       try {
-        const data = await signInUser(email, password);
-        startSession(data.user);
-        dispatch(setUser(data.user));
+        user = await authorization(email, password);
+        dispatch(setUser(user));
         dispatch(setIsAuth(true));
         navigate(HOME_ROUTE);
       } catch (error) {
@@ -51,9 +50,8 @@ export default function Auth() {
       }
 
       try {
-        let data = await createUser(email, password);
-        startSession(data.user);
-        dispatch(setUser(data.user));
+        user = await registration(email, password);
+        dispatch(setUser(user));
         dispatch(setIsAuth(true));
         navigate(HOME_ROUTE);
       } catch (error) {

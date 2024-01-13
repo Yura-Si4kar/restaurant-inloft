@@ -3,7 +3,7 @@ export const menuApi = 'https://shy-antelope.cyclic.app/';
 
 export const initialValue = {
   isLoading: false,
-  isAuth: true,
+  isAuth: false,
   error: false,
   errorBody: {},
   user: {},

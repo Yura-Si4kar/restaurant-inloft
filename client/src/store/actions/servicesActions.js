@@ -4,14 +4,10 @@ import {
   getItemsFromLocalStorage,
   saveItemsToLocalStorage,
   updateItemsInLocalStorage,
-} from '../localStorage';
+} from '../../storages/localStorage';
 import { createAction } from '../actionsCreator';
-import {
-  addSalesData,
-  getFetchListByCategories,
-  setNewRatingToTheMenuItem,
-  setOrdersListToTable,
-} from '../api';
+import { addSalesData } from '../../http/statisticsApi';
+import { getListByParams, updateMenuItemRating, setOrdersListToTable } from '../../http/servicesApi';
 
 export const SET_LOADING = 'SET_LOADING';
 export const setLoading = createAction(SET_LOADING);
@@ -79,7 +75,7 @@ export const setPagesLimit = createAction(SET_PAGES_LIMIT);
 export const getMenuList =
   (params, page, limit, search) => (dispatch, getState) => {
     dispatch(setLoading(true));
-    getFetchListByCategories(params, page, limit, search)
+    getListByParams(params, page, limit, search)
     .then((data) => {
       dispatch(setMenuList(data.collections));
       dispatch(setTotal(data.total));
@@ -135,16 +131,16 @@ export const changeItemRating =
     const { list } = getState();
     const item = list.find((el) => el._id === id);
     const newItem = { ...item, rate: newRating };
-    setNewRatingToTheMenuItem(params, id, newItem)
+    updateMenuItemRating(params, id, newItem)
       .then((data) => {
         dispatch(changeElementRating(data));
-        dispatch(setError(true));
+        dispatch(setError(false));
         dispatch(setErrorBody({}));
       })
       .catch((error) => {
         console.error(error);
         dispatch(setError(true));
-        dispatch(setErrorBody({}));
+        dispatch(setErrorBody(error));
       });
   };
 
@@ -263,7 +259,7 @@ export const saveSalesDate = (obj) => (dispatch, getState) => {
 
 export const getSalesList = (params) => (dispatch, getState) => {
   dispatch(setLoading(true));
-  getFetchListByCategories(params)
+  getListByParams(params)
     .then((data) => {
       dispatch(setSalesList(data));
       dispatch(setError(false));

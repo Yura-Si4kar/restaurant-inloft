@@ -1,9 +1,9 @@
+import { getListByParams } from '../../http/servicesApi';
 import { createAction } from '../actionsCreator';
 import {
-  addEmploeeToTheDataList,
-  getFetchListByCategories,
-  removeEmploeeFromTheDataList,
-} from '../api';
+  addEmployeeToDataList,
+  removeEmployeeFromDataList,
+} from '../../http/personnelsApi.js';
 
 export const SET_LOADING = 'SET_LOADING';
 export const setPersonnelListLoading = createAction(SET_LOADING);
@@ -25,7 +25,7 @@ export const deleteEmployee = createAction(DELETE_EMPLOYEE);
 
 export const getPersonnelsList = (params) => (dispatch, getState) => {
   dispatch(setPersonnelListLoading(true));
-  getFetchListByCategories(params)
+  getListByParams(params)
     .then((data) => {
       dispatch(setPersonellList(data));
       dispatch(setPersonnelsError(false));
@@ -43,7 +43,7 @@ export const getPersonnelsList = (params) => (dispatch, getState) => {
 
 export const addUser = (user) => (dispatch, getState) => {
   dispatch(setPersonnelListLoading(true));
-  addEmploeeToTheDataList(user)
+  addEmployeeToDataList(user)
     .then((data) => {
       dispatch(addEmployee(data));
       dispatch(setPersonnelsError(false));
@@ -61,7 +61,7 @@ export const addUser = (user) => (dispatch, getState) => {
 
 export const fireAnEmployee = (id) => (dispatch, getState) => {
   dispatch(setPersonnelListLoading(true));
-  removeEmploeeFromTheDataList(id)
+  removeEmployeeFromDataList(id)
     .then(() => {
       dispatch(deleteEmployee(id));
       dispatch(setPersonnelsError(false));

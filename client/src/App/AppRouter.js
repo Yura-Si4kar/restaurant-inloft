@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectIsAuth } from '../store/selectors/selectors';
 import { privatePages, publicPages } from '../routers/routers';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { HOME_ROUTE, LOGIN_ROUTE } from '../config/consts';
+import { HOME_ROUTE } from '../config/consts';
 
 export default function AppRouter() {
   const isAuth = useSelector(selectIsAuth);
@@ -26,11 +26,8 @@ export default function AppRouter() {
               element={page.component}
               caseSensitive={page.caseSensitive}
             />
-          ))}
-      <Route
-        path="/*"
-        element={<Navigate to={isAuth ? HOME_ROUTE : LOGIN_ROUTE} />}
-      />
+        ))}
+      <Route path='/*' element={<Navigate to={HOME_ROUTE} />} />
     </Routes>
   );
 }

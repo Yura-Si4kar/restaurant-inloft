@@ -1,9 +1,9 @@
+import { getListByParams } from '../../http/servicesApi';
 import { createAction } from '../actionsCreator';
 import {
-  addTableToTheDataList,
-  getFetchListByCategories,
-  removeTableFromTheDataList,
-} from '../api';
+  addTableToDataList,
+  removeTableFromDataList,
+} from '../../http/tablesApi.js';
 
 export const SET_LOADING = 'SET_LOADING';
 export const setTableListLoading = createAction(SET_LOADING);
@@ -25,7 +25,7 @@ export const deleteItem = createAction(DELETE_TABLE);
 
 export const getTableList = (params) => (dispatch, getState) => {
   dispatch(setTableListLoading(true));
-  getFetchListByCategories(params)
+  getListByParams(params)
     .then((data) => {
       dispatch(setTablesList(data));
       dispatch(setTablesError(false));
@@ -43,7 +43,7 @@ export const getTableList = (params) => (dispatch, getState) => {
 
 export const addItem = (item) => (dispatch, getState) => {
   dispatch(setTableListLoading(true));
-  addTableToTheDataList(item)
+  addTableToDataList(item)
     .then((data) => {
       dispatch(addTable(data));
       dispatch(setTablesError(false));
@@ -61,7 +61,7 @@ export const addItem = (item) => (dispatch, getState) => {
 
 export const deleteTable = (id) => (dispatch, getState) => {
   dispatch(setTableListLoading(true));
-  removeTableFromTheDataList(id)
+  removeTableFromDataList(id)
     .then(() => {
       dispatch(deleteItem(id));
       dispatch(setTablesError(false));

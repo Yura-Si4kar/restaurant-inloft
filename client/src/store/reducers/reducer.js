@@ -173,7 +173,7 @@ function clearOrderFromTheTable(state, id) {
 function calculate(state, payload) {
   return {
     ...state,
-    sales: [...state.sales, { ...payload, id: Date.now() }],
+    sales: [...state.sales, payload],
   };
 }
 

@@ -13,18 +13,34 @@ import { Grid, ThemeProvider, createTheme } from '@mui/material';
 import { TABLES_LIST_PARAM } from '../config/consts';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
-import { isLoggedIn } from '../firebase/session';
+import { check } from '../http/userApi';
+import { setIsAuth, setLoading, setUser } from '../store/actions/servicesActions';
 
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
 export default function App() {
-  const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
   const loading = useSelector(selectIsLoading);
   const error = useSelector(selectIsError);
+  const isAuth = useSelector(selectIsAuth);
+  
+  useEffect(() => {
+    dispatch(setLoading(true))
+    check()
+      .then(data => {
+        dispatch(setUser(data));
+        dispatch(setIsAuth(true));
+      })
+      .catch(() => {
+        dispatch(setUser({}));
+        dispatch(setIsAuth(false));
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
+  }, [dispatch])  
 
   useEffect(() => {
-    isLoggedIn();
     dispatch(getTableList(TABLES_LIST_PARAM));
   }, [dispatch]);
 
@@ -34,9 +50,9 @@ export default function App() {
         <Grid item xs={12} key={index}>
           <ThemeProvider theme={theme}>
             <BrowserRouter>
-              {isAuth && <NavigationBar />}
               {loading && <Loading />}
               {error && <Error />}
+              {isAuth && <NavigationBar />}
               <AppRouter />
             </BrowserRouter>
           </ThemeProvider>
