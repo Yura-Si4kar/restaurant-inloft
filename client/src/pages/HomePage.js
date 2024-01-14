@@ -11,8 +11,9 @@ import { Container } from '@mui/system';
 import { Box } from '@mui/material';
 import MenuListItem from '../components/Items/MenuListItem';
 import OrderPopupBtn from '../components/Popup/PopupBtn/OrderPopupBtn';
-import { ALL_MENU_LIST_PARAM } from '../config/consts';
+import { ALL_MENU_LIST_PARAM, TABLES_LIST_PARAM } from '../config/consts';
 import PagePagination from '../components/Pagination';
+import { getTableList } from '../store/actions/tablesActions';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -25,8 +26,9 @@ export default function HomePage() {
   const handlePageChange = (newPage) => {
     setPage(newPage);
   };
-
+  
   useEffect(() => {
+    dispatch(getTableList(TABLES_LIST_PARAM));
     dispatch(getMenuList(ALL_MENU_LIST_PARAM, page, limit, searchValue));
     dispatch(getOrderList());
   }, [dispatch, page, limit, searchValue]);

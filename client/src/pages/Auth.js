@@ -3,12 +3,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AUTHORIZATION_ROUTE, HOME_ROUTE, LOGIN_ROUTE } from '../config/consts';
 import MyInput from '../components/UI/MyInput/MyInput';
 import MyButton from '../components/UI/MyButton/MyButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setIsAuth, setUser } from '../store/actions/servicesActions';
 import { Box, Container, Typography } from '@mui/material';
 import { authorization, registration } from '../http/userApi';
+import { selectIsLoading } from '../store/selectors/selectors';
+import Loading from '../components/Loading';
 
 export default function Auth() {
+  const loading = useSelector(selectIsLoading);
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,6 +65,10 @@ export default function Auth() {
       }
     }
   };
+
+  if (loading) {
+    return <Loading/>
+  }
 
   return (
     <Container className="auth-container">

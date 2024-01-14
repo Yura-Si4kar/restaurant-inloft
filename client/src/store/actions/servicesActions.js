@@ -79,8 +79,6 @@ export const getMenuList =
     .then((data) => {
       dispatch(setMenuList(data.collections));
       dispatch(setTotal(data.total));
-      dispatch(setError(false));
-      dispatch(setErrorBody({}));
     })
     .catch((error) => {
       console.error(error);
@@ -89,6 +87,8 @@ export const getMenuList =
     })
     .finally(() => {
       dispatch(setLoading(false));
+      dispatch(setError(false));
+      dispatch(setErrorBody({}));
     });
 };
 
