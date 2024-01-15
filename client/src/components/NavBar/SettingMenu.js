@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setIsAuth,
   setPagesLimit,
@@ -17,8 +17,9 @@ import {
 } from '../../store/actions/servicesActions';
 import MyButton from '../UI/MyButton/MyButton';
 import { useNavigate } from 'react-router-dom';
-import { LOGIN_ROUTE } from '../../config/consts';
+import { HOME_ROUTE, LOGIN_ROUTE } from '../../config/consts';
 import { endSession } from '../../storages/cookie';
+import { selectIsAuth } from '../../store/selectors/selectors';
 
 const limitElements = [4, 8, 12, 16, 20];
 
@@ -27,6 +28,7 @@ export default function SettingMenu() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [limit, setLimit] = useState(12);
+  const isAuth = useSelector(selectIsAuth);
 
   const handleOpen = () => {
     setOpen(true);
@@ -47,11 +49,15 @@ export default function SettingMenu() {
   }, [dispatch, limit]);
 
   const logOut = () => {
-    dispatch(setUser({}));
-    dispatch(setIsAuth(false));
-    navigate(LOGIN_ROUTE);
-    endSession();
-    handleClose();
+    if (isAuth) {
+      dispatch(setUser({}));
+      dispatch(setIsAuth(false));
+      navigate(HOME_ROUTE);
+      endSession();
+      handleClose();
+    } else {
+      navigate(LOGIN_ROUTE);
+    }
   };
 
   return (
@@ -111,7 +117,7 @@ export default function SettingMenu() {
               style={{ width: '100%' }}
               onClick={logOut}
             >
-              Exit
+              {isAuth ? 'Exit' : 'Login'}
             </MyButton>
           </MenuItem>
         </Menu>

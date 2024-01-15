@@ -27,6 +27,21 @@ export const publicPages = [
     component: <Auth />,
     caseSensitive: true,
   },
+  {
+    path: HOME_ROUTE,
+    component: <HomePage />,
+    caseSensitive: true,
+  },
+  {
+    path: CATEGORIES_ROUTE,
+    component: <CategoriesPage />,
+    caseSensitive: true,
+  },
+  {
+    path: CATEGORY_ROUTE,
+    component: <CategoryPage />,
+    caseSensitive: true,
+  },
 ];
 
 export const privatePages = [

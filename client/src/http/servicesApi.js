@@ -1,4 +1,5 @@
-import { $hostAuth } from ".";
+import { $host, $hostAuth } from ".";
+import { isLoggedIn } from "../storages/cookie";
 
 export const getListByParams = async (params, page, limit, search) => {
     try {
@@ -11,10 +12,10 @@ export const getListByParams = async (params, page, limit, search) => {
         }
 
         if (!paramsValidation(params)) {
-        throw new Error('Invalid parameter');
+          throw new Error('Invalid parameter');
         }
 
-        const { data } = await $hostAuth.get(queryString);
+        const { data } = await (isLoggedIn() ? $hostAuth : $host).get(queryString);
         
         return data;
     } catch (error) {
@@ -29,7 +30,7 @@ function paramsValidation(param) {
 
 export const updateMenuItemRating = async (params, id, newItem) => {
     try {
-        const response = await $hostAuth.put(`${params}/${id}`, newItem);
+        const response = await $host.put(`${params}/${id}`, newItem);
 
         if (response && response.data) {
         return response.data;
@@ -44,7 +45,7 @@ export const updateMenuItemRating = async (params, id, newItem) => {
 
 export const setOrdersListToTable = async (id, table) => {
   try {
-    const response = await $hostAuth.put(`tables/${id}`, table);
+    const response = await (isLoggedIn() ? $hostAuth : $host).put(`tables/${id}`, table);
 
     if (response && response.data) {
       return response.data;

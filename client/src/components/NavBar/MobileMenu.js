@@ -1,18 +1,21 @@
 import React from 'react';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
-import { Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Icon from '@mdi/react';
 import { mdiFood } from '@mdi/js';
+import { useSelector } from 'react-redux';
+import { selectIsAuth } from '../../store/selectors/selectors';
+import { NavigationMenuLinks } from '../UI/MyButton/NavigationMenuLinks';
 
 export function MobileMenu({
   handleOpenNavMenu,
   handleCloseNavMenu,
   anchorElNav,
 }) {
+  const isAuth = useSelector(selectIsAuth);
+  
   return (
     <>
       <Typography
@@ -52,51 +55,11 @@ export function MobileMenu({
           onClose={handleCloseNavMenu}
           className="navbar__mobile-list"
         >
-          <MenuItem>
-            <Link
-              to="/"
-              className="navbar__mobile-item"
-              onClick={handleCloseNavMenu}
-            >
-              Menu
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link
-              to="/categories"
-              className="navbar__mobile-item"
-              onClick={handleCloseNavMenu}
-            >
-              За категоріями
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link
-              to="/tables"
-              className="navbar__mobile-item"
-              onClick={handleCloseNavMenu}
-            >
-              Tables
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link
-              to="/personnels"
-              className="navbar__mobile-item"
-              onClick={handleCloseNavMenu}
-            >
-              Personnel
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link
-              to="/statistics"
-              className="navbar__mobile-item"
-              onClick={handleCloseNavMenu}
-            >
-              Statistics
-            </Link>
-          </MenuItem>
+          <NavigationMenuLinks styleName={"navbar__mobile-item"} path={'/'} handleClose={handleCloseNavMenu}>Меню</NavigationMenuLinks>
+          <NavigationMenuLinks styleName={"navbar__mobile-item"} path={'/categories'} handleClose={handleCloseNavMenu}>За категоріями</NavigationMenuLinks>
+          {isAuth && <NavigationMenuLinks styleName={"navbar__mobile-item"} path={'/tables'} handleClose={handleCloseNavMenu}>Tables</NavigationMenuLinks> }
+          {isAuth && <NavigationMenuLinks styleName={"navbar__mobile-item"} path={'/personnels'} handleClose={handleCloseNavMenu}>Personnel</NavigationMenuLinks> }
+          {isAuth && <NavigationMenuLinks styleName={"navbar__mobile-item"} path={'/statistics'} handleClose={handleCloseNavMenu}>Statistics</NavigationMenuLinks> }
         </Menu>
       </Box>
     </>

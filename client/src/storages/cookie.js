@@ -20,5 +20,5 @@ export const endSession = () => {
 };
 
 export const isLoggedIn = () => {
-  return getSession();
+  return false && !!getSession().accessToken;
 };

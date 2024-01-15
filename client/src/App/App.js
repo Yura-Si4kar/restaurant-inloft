@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import AppRouter from './AppRouter';
 import NavigationBar from '../components/NavigationBar';
 import {
-  selectIsAuth,
   selectIsError,
   selectIsLoading,
 } from '../store/selectors/selectors';
@@ -19,25 +18,20 @@ const darkTheme = createTheme({ palette: { mode: 'dark' } });
 export default function App() {
   const loading = useSelector(selectIsLoading);
   const error = useSelector(selectIsError);
-  const isAuth = useSelector(selectIsAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {
-  console.log("Before API call");
   dispatch(setLoading(true))
   check()
     .then(data => {
-      console.log("API call successful");
       dispatch(setUser(data));
       dispatch(setIsAuth(true));
     })
     .catch(error => {
-      console.error("API call error:", error);
       dispatch(setUser({}));
       dispatch(setIsAuth(false));
     })
     .finally(() => {
-      console.log("API call completed");
       dispatch(setLoading(false));
     });
   }, [dispatch])
@@ -49,7 +43,7 @@ export default function App() {
           <BrowserRouter>
             {loading && <Loading />}
             {error && <Error />}
-            {isAuth && <NavigationBar />}
+            <NavigationBar/>
             <AppRouter />
           </BrowserRouter>
         </ThemeProvider>
