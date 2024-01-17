@@ -12,12 +12,14 @@ const INITIAL_VALUE = {
   name: '',
   position: '',
   salary: '',
+  img: null,
   error: false,
 };
 
 export default function PersonnelDialogForm({ open, handleClose }) {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState(INITIAL_VALUE);
+  const [file, setFile] = useState(null);
 
   const getInput = (e) => {
     setFormState({
@@ -30,9 +32,10 @@ export default function PersonnelDialogForm({ open, handleClose }) {
     e.preventDefault();
 
     if (
-      validateFilds(formState.name) ||
-      validateFilds(formState.position) ||
-      validateFilds(formState.salary)
+      validateFields(formState.name) ||
+      validateFields(formState.position) ||
+      validateFields(formState.salary) ||
+      !file
     ) {
       return setFormState({
         ...formState,
@@ -40,17 +43,25 @@ export default function PersonnelDialogForm({ open, handleClose }) {
         position: '',
         salary: '',
         error: true,
+        img: null,
       });
     }
+
+    const formData = new FormData();
+    formData.append('name', formState.name);
+    formData.append('position', formState.position);
+    formData.append('salary', formState.salary);
+    formData.append('order', formState.order);
+    formData.append('img', file);
+
     delete formState.error;
-    dispatch(addUser(formState));
+
+    dispatch(addUser(formData));
     setFormState(INITIAL_VALUE);
     handleClose();
   };
 
-  function validateFilds(input) {
-    return input === '';
-  }
+  const validateFields = (input) => input === '';
 
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -82,6 +93,15 @@ export default function PersonnelDialogForm({ open, handleClose }) {
               name="salary"
               placeholder="відсоток від продажу"
               onChange={getInput}
+            />
+          </FormControl>
+          <FormControl fullWidth className="modal-form">
+            <TextField
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files[0])}
             />
           </FormControl>
           <Typography paragraph className={formState.error ? 'error' : 'hide'}>

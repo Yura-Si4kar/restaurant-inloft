@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import CheckWithdrawalWindow from '../Popup/CheckWithdrawalWindow';
-import pic from '../../img/table.jpg';
+import tablePicture from '../../img/table.jpg';
 import { selectPersonnelsList } from '../../store/selectors/selectors';
 import {
   clearTableOrders,
@@ -24,6 +24,7 @@ import {
 } from '../../store/actions/servicesActions';
 import { deleteTable } from '../../store/actions/tablesActions';
 import ExpandMore from '../UI/ExpandMore/ExpandMore';
+import { menuApi } from '../../config/config';
 
 export default function TablesItem({ table }) {
   const [expanded, setExpanded] = useState(false);
@@ -41,6 +42,7 @@ export default function TablesItem({ table }) {
   };
 
   const getFullPrice = () => {
+    console.log(table);
     let sum = table.order.map((element) => element.price * element.numbers);
 
     return sum.flat().reduce((acc, val) => {
@@ -82,12 +84,7 @@ export default function TablesItem({ table }) {
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <Card className="table__item">
-          <CardMedia
-            component="img"
-            height="200"
-            image={pic}
-            alt={`table` + table._id}
-          />
+          <CardMedia component="img" width={270} height={270} image={table.img ? menuApi + table.img : tablePicture} alt={`emploee`} />
           <CardContent>
             <Button
               onClick={deleteItem}

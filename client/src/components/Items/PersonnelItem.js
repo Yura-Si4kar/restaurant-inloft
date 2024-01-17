@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import pic from '../../img/unlogin-user-avatars.jpg';
 import {
   Box,
   Button,
@@ -14,6 +13,8 @@ import {
 import { useDispatch } from 'react-redux';
 import { fireAnEmployee } from '../../store/actions/personnelsActions';
 import ExpandMore from '../UI/ExpandMore/ExpandMore';
+import { menuApi } from '../../config/config';
+import personnelImage from '../../img/unlogin-user-avatars.jpg';
 
 export default function PersonnelItem({ person }) {
   const dispatch = useDispatch();
@@ -27,12 +28,12 @@ export default function PersonnelItem({ person }) {
     e.stopPropagation();
     dispatch(fireAnEmployee(person._id));
   }
-
+  console.log(person);
   return (
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <Paper className="personnel__item">
-          <CardMedia component="img" image={pic} alt={`emploee`} />
+          <CardMedia component="img" width={270} height={270} image={person.img ? menuApi + person.img : personnelImage} alt={`emploee`} />
           <CardContent>
             <Button
               onClick={deleteWorkerCard}

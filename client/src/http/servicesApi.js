@@ -6,9 +6,9 @@ export const getListByParams = async (params, page, limit, search) => {
         let queryString = params;
 
         if (search) {
-        queryString += `?page=${page}&limit=${limit}&search=${search}`;
+          queryString += `?page=${page}&limit=${limit}&search=${search}`;
         } else {
-        queryString += `?page=${page}&limit=${limit}`;
+          queryString += `?page=${page}&limit=${limit}`;
         }
 
         if (!paramsValidation(params)) {

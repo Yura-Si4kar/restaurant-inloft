@@ -1,5 +1,9 @@
+const { v4 } = require('uuid');
+const path = require('path');
+const fs = require('fs');
 const Models = require('../models/model');
 const ApiError = require('../error/ApiError');
+const sharp = require('sharp');
 
 class MenuItemsController {
     constructor(category) {
@@ -8,10 +12,31 @@ class MenuItemsController {
     
     async create(req, res, next) {
         try {
-            const list = new this.Model(req.body);
-            const result = await list.save();
-
-            res.status(201).json(result);
+            if (req.files) {
+                let { img } = req.files;
+                console.log(img);
+                let fileName = v4() + '.jpg';
+    
+                sharp(img.data)
+                .jpeg({ quality: 80 })
+                .toFile(path.resolve(__dirname, '..', 'static', fileName), (err, info) => {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        console.log(info);
+                    }
+                });
+    
+                const list = new this.Model({ ...req.body, img: fileName });
+                const result = await list.save();
+    
+                res.status(201).json(result);    
+            } else {
+                const list = new this.Model(req.body);
+                const result = await list.save();
+    
+                res.status(201).json(result);    
+            }
         } catch (error) {
             next(ApiError.internal(error.message));
         }
@@ -61,13 +86,23 @@ class MenuItemsController {
 
     async delete(req, res, next) {
         try {
-            const result = await this.Model.findByIdAndDelete(req.params.id);
+            let result = await this.Model.findById(req.params.id);
 
             if (!result) {
                 return next(ApiError.notFound('Element not found'));
             }
 
-            res.status(200).json(result);
+            if (result.img) {
+                const imagePath = path.resolve(__dirname, '..', 'static', result.img);
+                
+                if (fs.existsSync(imagePath)) {
+                    fs.unlinkSync(imagePath);
+                }                
+            }
+
+            const deletedResult = await this.Model.findByIdAndDelete(req.params.id);
+
+            res.status(200).json(deletedResult);
         } catch (error) {
             next(ApiError.internal(error.message));
         }

@@ -10,20 +10,19 @@ import { addItem } from '../../store/actions/tablesActions';
 
 const INITIAL_VALUE = {
   name: '',
-  img: '',
+  img: null,
   error: false,
 };
 
 export default function TableDialogForm({ open, handleClose }) {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState(INITIAL_VALUE);
+  const [file, setFile] = useState({});
 
   const getInput = (e) => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
-      img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fdesign-homes.ru%2Fkomnaty%2Fkukhnya-i-stolovaya%2Fservirovka-stola&psig=AOvVaw1DeIH0KCyJOfppjCfO7wo2&ust=1681477956988000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJjyz9b3pv4CFQAAAAAdAAAAABAI',
-      order: [],
     });
   };
 
@@ -34,13 +33,20 @@ export default function TableDialogForm({ open, handleClose }) {
       return setFormState({
         ...formState,
         name: '',
-        img: '',
+        img: null,
         error: true,
       });
     }
+
+    const formData = new FormData();
+    formData.append('name', formState.name);
+    formData.append('img', file);
+
     delete formState.error;
-    dispatch(addItem(formState));
+    
+    dispatch(addItem(formData));
     setFormState(INITIAL_VALUE);
+    setFile(null);
     handleClose();
   };
 
@@ -53,13 +59,22 @@ export default function TableDialogForm({ open, handleClose }) {
       <DialogTitle>Заповніть поля</DialogTitle>
       <DialogContent>
         <form>
-          <FormControl fullWidth sx={{ marginBottom: 2 }}>
+          <FormControl fullWidth className="modal-form">
             <TextField
               type="text"
               id="name"
               name="name"
-              placeholder="Назва столику"
+              placeholder="Введіть назву"
               onChange={getInput}
+            />
+          </FormControl>
+          <FormControl fullWidth className="modal-form">
+            <TextField
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              onChange={(e) => setFile(e.target.files[0])}
             />
           </FormControl>
           <Typography paragraph className={formState.error ? 'error' : 'hide'}>
