@@ -12,14 +12,12 @@ const INITIAL_VALUE = {
   name: '',
   position: '',
   salary: '',
-  img: null,
   error: false,
 };
 
 export default function PersonnelDialogForm({ open, handleClose }) {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState(INITIAL_VALUE);
-  const [file, setFile] = useState(null);
 
   const getInput = (e) => {
     setFormState({
@@ -34,8 +32,7 @@ export default function PersonnelDialogForm({ open, handleClose }) {
     if (
       validateFields(formState.name) ||
       validateFields(formState.position) ||
-      validateFields(formState.salary) ||
-      !file
+      validateFields(formState.salary)
     ) {
       return setFormState({
         ...formState,
@@ -43,7 +40,6 @@ export default function PersonnelDialogForm({ open, handleClose }) {
         position: '',
         salary: '',
         error: true,
-        img: null,
       });
     }
 
@@ -51,8 +47,6 @@ export default function PersonnelDialogForm({ open, handleClose }) {
     formData.append('name', formState.name);
     formData.append('position', formState.position);
     formData.append('salary', formState.salary);
-    formData.append('order', formState.order);
-    formData.append('img', file);
 
     delete formState.error;
 
@@ -93,15 +87,6 @@ export default function PersonnelDialogForm({ open, handleClose }) {
               name="salary"
               placeholder="відсоток від продажу"
               onChange={getInput}
-            />
-          </FormControl>
-          <FormControl fullWidth className="modal-form">
-            <TextField
-              type="file"
-              id="image"
-              name="image"
-              accept="image/*"
-              onChange={(e) => setFile(e.target.files[0])}
             />
           </FormControl>
           <Typography paragraph className={formState.error ? 'error' : 'hide'}>

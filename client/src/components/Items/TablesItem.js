@@ -24,7 +24,6 @@ import {
 } from '../../store/actions/servicesActions';
 import { deleteTable } from '../../store/actions/tablesActions';
 import ExpandMore from '../UI/ExpandMore/ExpandMore';
-import { menuApi } from '../../config/config';
 
 export default function TablesItem({ table }) {
   const [expanded, setExpanded] = useState(false);
@@ -84,7 +83,7 @@ export default function TablesItem({ table }) {
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <Card className="table__item">
-          <CardMedia component="img" width={270} height={270} image={table.img ? menuApi + table.img : tablePicture} alt={`emploee`} />
+          <CardMedia component="img" image={tablePicture} alt={`emploee`} />
           <CardContent>
             <Button
               onClick={deleteItem}

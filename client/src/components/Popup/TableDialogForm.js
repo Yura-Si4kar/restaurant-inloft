@@ -10,14 +10,12 @@ import { addItem } from '../../store/actions/tablesActions';
 
 const INITIAL_VALUE = {
   name: '',
-  img: null,
   error: false,
 };
 
 export default function TableDialogForm({ open, handleClose }) {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState(INITIAL_VALUE);
-  const [file, setFile] = useState({});
 
   const getInput = (e) => {
     setFormState({
@@ -33,20 +31,17 @@ export default function TableDialogForm({ open, handleClose }) {
       return setFormState({
         ...formState,
         name: '',
-        img: null,
         error: true,
       });
     }
 
     const formData = new FormData();
     formData.append('name', formState.name);
-    formData.append('img', file);
 
     delete formState.error;
     
     dispatch(addItem(formData));
     setFormState(INITIAL_VALUE);
-    setFile(null);
     handleClose();
   };
 
@@ -66,15 +61,6 @@ export default function TableDialogForm({ open, handleClose }) {
               name="name"
               placeholder="Введіть назву"
               onChange={getInput}
-            />
-          </FormControl>
-          <FormControl fullWidth className="modal-form">
-            <TextField
-              type="file"
-              id="image"
-              name="image"
-              accept="image/*"
-              onChange={(e) => setFile(e.target.files[0])}
             />
           </FormControl>
           <Typography paragraph className={formState.error ? 'error' : 'hide'}>

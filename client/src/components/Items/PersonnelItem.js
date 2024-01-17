@@ -13,7 +13,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { fireAnEmployee } from '../../store/actions/personnelsActions';
 import ExpandMore from '../UI/ExpandMore/ExpandMore';
-import { menuApi } from '../../config/config';
 import personnelImage from '../../img/unlogin-user-avatars.jpg';
 
 export default function PersonnelItem({ person }) {
@@ -33,7 +32,7 @@ export default function PersonnelItem({ person }) {
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <Paper className="personnel__item">
-          <CardMedia component="img" width={270} height={270} image={person.img ? menuApi + person.img : personnelImage} alt={`emploee`} />
+          <CardMedia component="img" image={personnelImage} alt={`emploee`} />
           <CardContent>
             <Button
               onClick={deleteWorkerCard}
