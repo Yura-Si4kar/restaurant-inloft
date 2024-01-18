@@ -10,6 +10,7 @@ import { addItem } from '../../store/actions/tablesActions';
 
 const INITIAL_VALUE = {
   name: '',
+  img: '',
   error: false,
 };
 
@@ -21,6 +22,8 @@ export default function TableDialogForm({ open, handleClose }) {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
+      img: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fdesign-homes.ru%2Fkomnaty%2Fkukhnya-i-stolovaya%2Fservirovka-stola&psig=AOvVaw1DeIH0KCyJOfppjCfO7wo2&ust=1681477956988000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJjyz9b3pv4CFQAAAAAdAAAAABAI',
+      order: [],
     });
   };
 
@@ -31,16 +34,12 @@ export default function TableDialogForm({ open, handleClose }) {
       return setFormState({
         ...formState,
         name: '',
+        img: '',
         error: true,
       });
     }
-
-    const formData = new FormData();
-    formData.append('name', formState.name);
-
     delete formState.error;
-    
-    dispatch(addItem(formData));
+    dispatch(addItem(formState));
     setFormState(INITIAL_VALUE);
     handleClose();
   };
@@ -54,12 +53,12 @@ export default function TableDialogForm({ open, handleClose }) {
       <DialogTitle>Заповніть поля</DialogTitle>
       <DialogContent>
         <form>
-          <FormControl fullWidth className="modal-form">
+          <FormControl fullWidth sx={{ marginBottom: 2 }}>
             <TextField
               type="text"
               id="name"
               name="name"
-              placeholder="Введіть назву"
+              placeholder="Назва столику"
               onChange={getInput}
             />
           </FormControl>

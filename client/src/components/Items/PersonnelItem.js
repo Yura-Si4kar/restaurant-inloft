@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import personnelImage from '../../img/unlogin-user-avatars.jpg';
 import {
   Box,
   Button,
@@ -13,7 +14,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { fireAnEmployee } from '../../store/actions/personnelsActions';
 import ExpandMore from '../UI/ExpandMore/ExpandMore';
-import personnelImage from '../../img/unlogin-user-avatars.jpg';
 
 export default function PersonnelItem({ person }) {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ export default function PersonnelItem({ person }) {
     e.stopPropagation();
     dispatch(fireAnEmployee(person._id));
   }
-  console.log(person);
+
   return (
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>

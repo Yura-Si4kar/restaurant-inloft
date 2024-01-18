@@ -41,7 +41,6 @@ export default function TablesItem({ table }) {
   };
 
   const getFullPrice = () => {
-    console.log(table);
     let sum = table.order.map((element) => element.price * element.numbers);
 
     return sum.flat().reduce((acc, val) => {
@@ -83,7 +82,12 @@ export default function TablesItem({ table }) {
     <React.Fragment>
       <Grid item xs={12} sm={6} md={4} lg={3}>
         <Card className="table__item">
-          <CardMedia component="img" image={tablePicture} alt={`emploee`} />
+          <CardMedia
+            component="img"
+            height="200"
+            image={tablePicture}
+            alt={`table` + table._id}
+          />
           <CardContent>
             <Button
               onClick={deleteItem}

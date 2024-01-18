@@ -30,9 +30,9 @@ export default function PersonnelDialogForm({ open, handleClose }) {
     e.preventDefault();
 
     if (
-      validateFields(formState.name) ||
-      validateFields(formState.position) ||
-      validateFields(formState.salary)
+      validateFilds(formState.name) ||
+      validateFilds(formState.position) ||
+      validateFilds(formState.salary)
     ) {
       return setFormState({
         ...formState,
@@ -42,20 +42,15 @@ export default function PersonnelDialogForm({ open, handleClose }) {
         error: true,
       });
     }
-
-    const formData = new FormData();
-    formData.append('name', formState.name);
-    formData.append('position', formState.position);
-    formData.append('salary', formState.salary);
-
     delete formState.error;
-
-    dispatch(addUser(formData));
+    dispatch(addUser(formState));
     setFormState(INITIAL_VALUE);
     handleClose();
   };
 
-  const validateFields = (input) => input === '';
+  function validateFilds(input) {
+    return input === '';
+  }
 
   return (
     <Dialog open={open} onClose={handleClose}>
