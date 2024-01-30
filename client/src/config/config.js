@@ -1,5 +1,5 @@
 export const STORAGE_KEY = 'orders';
-export const menuApi = 'https://shy-antelope.cyclic.app/';
+export const menuApi = 'https://in-loft.onrender.com/';
 
 export const initialValue = {
   isLoading: false,
